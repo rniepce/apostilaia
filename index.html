@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apostila IA – TJMG</title>
+    <meta name="description" content="Apostila interativa do curso de Inteligência Artificial no TJMG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e1a;
+            --bg2: #111827;
+            --bg3: #1e293b;
+            --card: #162032;
+            --card-hover: #1c2d4a;
+            --accent: #6366f1;
+            --accent2: #818cf8;
+            --accent-glow: rgba(99, 102, 241, .15);
+            --green: #22c55e;
+            --green-bg: rgba(34, 197, 94, .1);
+            --red: #ef4444;
+            --red-bg: rgba(239, 68, 68, .1);
+            --yellow: #eab308;
+            --yellow-bg: rgba(234, 179, 8, .1);
+            --blue: #3b82f6;
+            --blue-bg: rgba(59, 130, 246, .1);
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --border: #1e293b;
+            --sidebar-w: 280px;
+            --radius: 12px;
+            --font: 'Inter', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg3);
+            border-radius: 3px
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-w);
+            height: 100vh;
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transition: transform .3s
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .sidebar-header p {
+            font-size: .75rem;
+            color: var(--text3);
+            margin-top: 4px;
+            letter-spacing: .5px;
+            text-transform: uppercase
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 0
+        }
+
+        .nav-module {
+            padding: 0 12px;
+            margin-bottom: 4px
+        }
+
+        .nav-module-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--text3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: .2s
+        }
+
+        .nav-module-title:hover {
+            color: var(--text2);
+            background: var(--accent-glow)
+        }
+
+        .nav-module-title .mod-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            flex-shrink: 0
+        }
+
+        .mod1-icon {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6)
+        }
+
+        .mod2-icon {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4)
+        }
+
+        .mod3-icon {
+            background: linear-gradient(135deg, #22c55e, #10b981)
+        }
+
+        .mod4-icon {
+            background: linear-gradient(135deg, #f59e0b, #ef4444)
+        }
+
+        .nav-items {
+            padding: 0 8px;
+            overflow: hidden;
+            transition: max-height .3s
+        }
+
+        .nav-item {
+            display: block;
+            padding: 8px 12px 8px 44px;
+            font-size: .82rem;
+            color: var(--text2);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: .2s;
+            cursor: pointer;
+            position: relative
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--accent-glow);
+            color: var(--accent2)
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            font-size: .7rem;
+            color: var(--text3);
+            text-align: center
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--bg3);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #a78bfa);
+            border-radius: 2px;
+            transition: width .5s;
+            width: 0%
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: var(--sidebar-w);
+            min-height: 100vh
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 14, 26, .85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .topbar-title {
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--text2)
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg2);
+            color: var(--text2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+            font-size: 1rem
+        }
+
+        .btn-icon:hover {
+            border-color: var(--accent);
+            color: var(--accent)
+        }
+
+        .content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 40px 120px
+        }
+
+        /* SECTIONS */
+        .section {
+            display: none;
+            animation: fadeUp .4s ease
+        }
+
+        .section.active {
+            display: block
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .section-hero {
+            margin-bottom: 48px
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px
+        }
+
+        .badge-m1 {
+            background: rgba(99, 102, 241, .15);
+            color: #818cf8
+        }
+
+        .badge-m2 {
+            background: rgba(59, 130, 246, .15);
+            color: #60a5fa
+        }
+
+        .badge-m3 {
+            background: rgba(34, 197, 94, .15);
+            color: #4ade80
+        }
+
+        .badge-m4 {
+            background: rgba(245, 158, 11, .15);
+            color: #fbbf24
+        }
+
+        .section-hero h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px
+        }
+
+        .section-hero p {
+            font-size: 1.05rem;
+            color: var(--text2);
+            max-width: 640px
+        }
+
+        /* CARDS */
+        .concept-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: .3s
+        }
+
+        .concept-card:hover {
+            border-color: rgba(99, 102, 241, .3);
+            box-shadow: 0 0 30px rgba(99, 102, 241, .05)
+        }
+
+        .concept-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .concept-card h3 .card-icon {
+            font-size: 1.3rem
+        }
+
+        .concept-card h4 {
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--accent2);
+            margin: 16px 0 8px
+        }
+
+        .concept-card p,
+        .concept-card li {
+            font-size: .92rem;
+            color: var(--text2);
+            line-height: 1.8
+        }
+
+        .concept-card ul {
+            padding-left: 20px;
+            margin: 8px 0
+        }
+
+        .concept-card li {
+            margin-bottom: 4px
+        }
+
+        .concept-card strong {
+            color: var(--text);
+            font-weight: 600
+        }
+
+        /* HIGHLIGHT BOXES */
+        .highlight-box {
+            padding: 20px 24px;
+            border-radius: var(--radius);
+            margin: 16px 0;
+            border-left: 4px solid
+        }
+
+        .highlight-box.info {
+            background: var(--blue-bg);
+            border-color: var(--blue)
+        }
+
+        .highlight-box.warn {
+            background: var(--yellow-bg);
+            border-color: var(--yellow)
+        }
+
+        .highlight-box.danger {
+            background: var(--red-bg);
+            border-color: var(--red)
+        }
+
+        .highlight-box.success {
+            background: var(--green-bg);
+            border-color: var(--green)
+        }
+
+        .highlight-box p {
+            font-size: .9rem;
+            color: var(--text)
+        }
+
+        .highlight-box .hl-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        /* TABLES */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 16px 0;
+            border-radius: var(--radius);
+            border: 1px solid var(--border)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        th {
+            background: var(--bg3);
+            padding: 12px 16px;
+            font-size: .78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: var(--text2);
+            text-align: left
+        }
+
+        td {
+            padding: 12px 16px;
+            font-size: .88rem;
+            border-top: 1px solid var(--border);
+            color: var(--text2)
+        }
+
+        tr:hover td {
+            background: rgba(99, 102, 241, .03)
+        }
+
+        /* COMPARE GRID */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0
+        }
+
+        .compare-col {
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border)
+        }
+
+        .compare-col.bad {
+            background: var(--red-bg);
+            border-color: rgba(239, 68, 68, .3)
+        }
+
+        .compare-col.good {
+            background: var(--green-bg);
+            border-color: rgba(34, 197, 94, .3)
+        }
+
+        .compare-col h4 {
+            font-size: .85rem;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .compare-col p {
+            font-size: .88rem
+        }
+
+        /* ACCORDION */
+        .accordion {
+            margin: 16px 0
+        }
+
+        .acc-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+            overflow: hidden
+        }
+
+        .acc-header {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: .92rem;
+            background: var(--card);
+            transition: .2s
+        }
+
+        .acc-header:hover {
+            background: var(--card-hover)
+        }
+
+        .acc-header .arrow {
+            transition: transform .3s;
+            font-size: .8rem;
+            color: var(--text3)
+        }
+
+        .acc-item.open .acc-header .arrow {
+            transform: rotate(180deg)
+        }
+
+        .acc-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease;
+            padding: 0 20px
+        }
+
+        .acc-item.open .acc-body {
+            max-height: 2000px;
+            padding: 0 20px 20px
+        }
+
+        .acc-body p,
+        .acc-body li {
+            font-size: .9rem;
+            color: var(--text2);
+            line-height: 1.8
+        }
+
+        .acc-body ul {
+            padding-left: 20px;
+            margin: 8px 0
+        }
+
+        /* ANALOGY BOX */
+        .analogy {
+            background: linear-gradient(135deg, rgba(99, 102, 241, .08), rgba(168, 85, 247, .08));
+            border: 1px solid rgba(99, 102, 241, .2);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 16px 0;
+            position: relative
+        }
+
+        .analogy::before {
+            content: '💡';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.2rem;
+            background: var(--bg);
+            padding: 0 8px
+        }
+
+        .analogy p {
+            font-size: .92rem;
+            color: var(--text);
+            font-style: italic;
+            line-height: 1.8
+        }
+
+        /* CHALLENGE */
+        .challenge {
+            background: linear-gradient(135deg, rgba(245, 158, 11, .08), rgba(239, 68, 68, .08));
+            border: 1px solid rgba(245, 158, 11, .3);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin: 32px 0
+        }
+
+        .challenge h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .challenge ol,
+        .challenge ul {
+            padding-left: 20px;
+            margin: 8px 0
+        }
+
+        .challenge li {
+            font-size: .9rem;
+            color: var(--text2);
+            margin-bottom: 6px;
+            line-height: 1.7
+        }
+
+        /* QUIZ */
+        .quiz {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin: 24px 0
+        }
+
+        .quiz h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent2)
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: .9rem;
+            color: var(--text2);
+            transition: .2s;
+            background: var(--bg2)
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow)
+        }
+
+        .quiz-option.correct {
+            border-color: var(--green);
+            background: var(--green-bg);
+            color: var(--green)
+        }
+
+        .quiz-option.wrong {
+            border-color: var(--red);
+            background: var(--red-bg);
+            color: var(--red)
+        }
+
+        .quiz-feedback {
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: .88rem;
+            display: none
+        }
+
+        /* MOBILE */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 200;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg2);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+            align-items: center;
+            justify-content: center
+        }
+
+        @media(max-width:768px) {
+            .sidebar {
+                transform: translateX(-100%)
+            }
+
+            .sidebar.open {
+                transform: translateX(0)
+            }
+
+            .main {
+                margin-left: 0
+            }
+
+            .menu-toggle {
+                display: flex
+            }
+
+            .content {
+                padding: 24px 20px 100px
+            }
+
+            .section-hero h2 {
+                font-size: 1.6rem
+            }
+
+            .compare-grid {
+                grid-template-columns: 1fr
+            }
+
+            .topbar {
+                padding: 12px 20px 12px 56px
+            }
+        }
+
+        /* HOME SECTION */
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px
+        }
+
+        .home-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            cursor: pointer;
+            transition: .3s;
+            text-decoration: none;
+            color: var(--text)
+        }
+
+        .home-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, .1)
+        }
+
+        .home-card .hc-icon {
+            font-size: 2rem;
+            margin-bottom: 12px
+        }
+
+        .home-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .home-card p {
+            font-size: .82rem;
+            color: var(--text2)
+        }
+
+        @media(max-width:768px) {
+            .home-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>🤖 Apostila IA</h1>
+            <p>TJMG – Curso de IA</p>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <div class="nav-module">
+                <div class="nav-item active" data-section="home">🏠 Início</div>
+            </div>
+            <div class="nav-module">
+                <div class="nav-module-title"><span class="mod-icon mod1-icon">1</span> Fundamentos e Ética</div>
+                <div class="nav-items">
+                    <div class="nav-item" data-section="m1-llm">LLM – O Motor</div>
+                    <div class="nav-item" data-section="m1-tokens">Tokens – A Moeda</div>
+                    <div class="nav-item" data-section="m1-contexto">Janela de Contexto</div>
+                    <div class="nav-item" data-section="m1-modelos">Ecossistema de Modelos</div>
+                    <div class="nav-item" data-section="m1-alucinacao">Alucinação</div>
+                    <div class="nav-item" data-section="m1-temperatura">Temperatura</div>
+                    <div class="nav-item" data-section="m1-human">Human-in-the-loop</div>
+                    <div class="nav-item" data-section="m1-seguranca">Segurança da Informação</div>
+                    <div class="nav-item" data-section="m1-regulatorio">Marco Regulatório</div>
+                </div>
+            </div>
+            <div class="nav-module">
+                <div class="nav-module-title"><span class="mod-icon mod2-icon">2</span> Ecossistema Google</div>
+                <div class="nav-items">
+                    <div class="nav-item" data-section="m2-notebook">NotebookLM</div>
+                    <div class="nav-item" data-section="m2-workspace">Gemini no Workspace</div>
+                    <div class="nav-item" data-section="m2-prompt">Engenharia de Prompt</div>
+                    <div class="nav-item" data-section="m2-desafio">Desafio: Ofício Relâmpago</div>
+                </div>
+            </div>
+            <div class="nav-module">
+                <div class="nav-module-title"><span class="mod-icon mod3-icon">3</span> Ferramentas TJMG</div>
+                <div class="nav-items">
+                    <div class="nav-item" data-section="m3-assistente">Assistente TJMG</div>
+                    <div class="nav-item" data-section="m3-transcritor">Transcritor de Audiências</div>
+                    <div class="nav-item" data-section="m3-desafio">Desafio: Sommelier de Modelos</div>
+                </div>
+            </div>
+            <div class="nav-module">
+                <div class="nav-module-title"><span class="mod-icon mod4-icon">4</span> Oficina Pedagógica</div>
+                <div class="nav-items">
+                    <div class="nav-item" data-section="m4-responsabilidade">Responsabilidade</div>
+                    <div class="nav-item" data-section="m4-laboratorio">Laboratório Seguro</div>
+                </div>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            Progresso do Curso
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="progressText" style="margin-top:4px">0%</div>
+        </div>
+    </aside>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="topbar-title" id="topbarTitle">Início</div>
+            <div class="topbar-actions">
+                <button class="btn-icon" onclick="toggleFontSize()" title="Tamanho da fonte">Aa</button>
+            </div>
+        </div>
+        <div class="content" id="contentArea">
+
+            <!-- HOME -->
+            <div class="section active" id="home">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">📘 Apostila do Participante</div>
+                    <h2>Inteligência Artificial no TJMG</h2>
+                    <p>Bem-vindo à apostila interativa do curso de IA. Navegue pelos módulos no menu lateral ou escolha
+                        um tema abaixo para começar.</p>
+                </div>
+                <div class="home-grid">
+                    <div class="home-card" onclick="goTo('m1-llm')">
+                        <div class="hc-icon">🧠</div>
+                        <h3>Módulo 1: Fundamentos</h3>
+                        <p>Conceitos técnicos, ética e segurança da informação</p>
+                    </div>
+                    <div class="home-card" onclick="goTo('m2-notebook')">
+                        <div class="hc-icon">🔧</div>
+                        <h3>Módulo 2: Ecossistema Google</h3>
+                        <p>NotebookLM, Gemini no Workspace e Engenharia de Prompt</p>
+                    </div>
+                    <div class="home-card" onclick="goTo('m3-assistente')">
+                        <div class="hc-icon">⚖️</div>
+                        <h3>Módulo 3: Ferramentas TJMG</h3>
+                        <p>Assistente TJMG, Transcritor de Audiências</p>
+                    </div>
+                    <div class="home-card" onclick="goTo('m4-responsabilidade')">
+                        <div class="hc-icon">🎓</div>
+                        <h3>Módulo 4: Oficina Pedagógica</h3>
+                        <p>Responsabilidade, boas práticas e laboratório</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M1: LLM -->
+            <div class="section" id="m1-llm">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção A</div>
+                    <h2>LLM – O Motor da IA</h2>
+                    <p>Entenda como funcionam os Modelos de Linguagem Grande que estão por trás do ChatGPT, Gemini e
+                        Claude.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">⚙️</span> O que é um LLM?</h3>
+                    <p><strong>Large Language Models</strong> são redes neurais treinadas com volumes massivos de texto
+                        (basicamente toda a internet pública) para reconhecer padrões linguísticos.</p>
+                    <h4>A Mecânica: Probabilidade</h4>
+                    <p>A IA funciona como uma <strong>"Calculadora de Palavras"</strong>. Diante da frase <em>"O juiz
+                            proferiu a..."</em>, ela calcula estatisticamente que a próxima palavra mais provável é
+                        <strong>"sentença" (90%)</strong>.
+                    </p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🎯</span> Determinismo vs. Probabilidade</h3>
+                    <div class="compare-grid">
+                        <div class="compare-col good">
+                            <h4>🔒 Sistemas Tradicionais (Determinísticos)</h4>
+                            <p>O PJe, o Excel ou a Calculadora. Se você somar 2+2, o resultado será <strong>sempre
+                                    4</strong>. Seguem regras lógicas rígidas.</p>
+                        </div>
+                        <div class="compare-col bad">
+                            <h4>🎲 IA Generativa (Probabilística)</h4>
+                            <p>Funciona como um <strong>"Contador de Histórias"</strong>. Seu objetivo é produzir o
+                                texto <em>estatisticamente mais provável</em>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box danger">
+                    <div class="hl-title">⚠️ Verossimilhança vs. Verdade</div>
+                    <p>A IA <strong>não tem compromisso com a verdade factual</strong>, mas com a <strong>coerência
+                            linguística</strong>. Se ela não souber a resposta, pode <strong>inventar uma mentira
+                            perfeitamente escrita</strong> e convincente (<em>alucinação</em>), pois estatisticamente
+                        aquelas palavras "combinam".</p>
+                </div>
+                <div class="quiz">
+                    <h4>🧪 Teste seu Conhecimento</h4>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">A IA é um sistema determinístico como o
+                        Excel</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">A IA é probabilística e
+                        gera o texto mais provável, não necessariamente verdadeiro</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">A IA consulta bancos de dados para garantir
+                        respostas corretas</div>
+                    <div class="quiz-feedback"
+                        data-right="A IA busca a verossimilhança (coerência), não a verdade factual."></div>
+                </div>
+            </div>
+
+            <!-- M1: TOKENS -->
+            <div class="section" id="m1-tokens">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção B</div>
+                    <h2>Tokens – A Moeda da IA</h2>
+                    <p>A IA não lê palavras como nós. Ela processa códigos numéricos chamados <strong>Tokens</strong>.
+                    </p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🪙</span> O que são Tokens?</h3>
+                    <p>É a <strong>unidade mínima de processamento</strong>. Pode ser uma palavra, uma sílaba ou um
+                        espaço.</p>
+                    <div class="highlight-box info">
+                        <div class="hl-title">📏 Regra de Bolso</div>
+                        <p><strong>1.000 tokens ≈ 750 palavras</strong> (em português). Tudo é medido em tokens: custo,
+                            capacidade e velocidade.</p>
+                    </div>
+                </div>
+                <div class="highlight-box danger">
+                    <div class="hl-title">🚫 Matemática Ruim</div>
+                    <p>Como a IA quebra números em tokens (ex: "2024" pode ser lido como "20" e "24"), ela <strong>erra
+                            cálculos simples</strong>.</p>
+                    <p><strong>Regra:</strong> Nunca peça para a IA somar penas ou calcular custas. Use o Excel.</p>
+                </div>
+            </div>
+
+            <!-- M1: JANELA DE CONTEXTO -->
+            <div class="section" id="m1-contexto">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção C</div>
+                    <h2>Janela de Contexto</h2>
+                    <p>Este é o conceito <strong>mais importante</strong> para a análise de processos volumosos.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">📐</span> A Memória de Trabalho</h3>
+                    <p>É a quantidade máxima de informação (tokens) que o modelo consegue <strong>"segurar na
+                            cabeça"</strong> de uma única vez para analisar.</p>
+                    <div class="highlight-box success">
+                        <div class="hl-title">💎 Diferencial TJMG (Gemini 1.5 Pro)</div>
+                        <p>Você tem acesso a uma janela massiva: <strong>até 2 milhões de tokens</strong>. Isso permite
+                            subir autos inteiros, vídeos e áudios sem perda de memória.</p>
+                    </div>
+                </div>
+                <div class="analogy">
+                    <p>"A Janela de Contexto é o <strong>tamanho da mesa do Juiz</strong>. Uma mesa pequena só cabe uma
+                        folha. O Gemini do TJMG é uma <strong>mesa de reunião gigante</strong>: cabe o processo inteiro
+                        aberto, e a IA consegue cruzar a prova da página 1 com a da página 5.000."</p>
+                </div>
+            </div>
+
+            <!-- M1: ECOSSISTEMA DE MODELOS -->
+            <div class="section" id="m1-modelos">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção D</div>
+                    <h2>O Ecossistema de Modelos</h2>
+                    <p>A "Sopa de Letrinhas": conheça os principais modelos de IA do mercado.</p>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Empresa</th>
+                                <th>Destaque</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🔵 Gemini</strong></td>
+                                <td>Google</td>
+                                <td><strong>Oficial do TJMG.</strong> Multimodal nativo (vê vídeo e ouve áudio), maior
+                                    janela de contexto.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚫ GPT</strong></td>
+                                <td>OpenAI</td>
+                                <td>Pioneiro (ChatGPT). Raciocínio lógico forte. Versão gratuita sem proteção
+                                    corporativa.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🟠 Claude</strong></td>
+                                <td>Anthropic</td>
+                                <td>Focado em segurança. Escrita mais "humana" e natural.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🟣 Llama</strong></td>
+                                <td>Meta</td>
+                                <td>Código aberto (Open Source). Importante para soberania tecnológica futura.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- M1: ALUCINAÇÃO -->
+            <div class="section" id="m1-alucinacao">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção E</div>
+                    <h2>Alucinação – O "Delírio Eloquente"</h2>
+                    <p>Quando a IA inventa informação que parece perfeita, mas é falsa.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🌀</span> O Fenômeno</h3>
+                    <p>Quando a IA não encontra a resposta nos seus dados, ela <strong>inventa uma informação
+                            estatisticamente plausível</strong> para preencher a lacuna, com <strong>total
+                            confiança</strong>.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">💉</span> A Vacina: Grounding (Ancoragem)</h3>
+                    <p>A técnica é <strong>obrigar a IA a responder apenas com base no documento fornecido</strong> (PDF
+                        do processo). Ferramentas como o <strong>NotebookLM</strong> e o <strong>Assistente
+                            TJMG</strong> usam isso para reduzir drasticamente a alucinação.</p>
+                </div>
+            </div>
+
+            <!-- M1: TEMPERATURA -->
+            <div class="section" id="m1-temperatura">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção F</div>
+                    <h2>Temperatura – O Botão de Criatividade</h2>
+                    <p>Parâmetro que define se a IA será criativa ou precisa.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🌡️</span> Como Funciona (0 a 1)</h3>
+                    <div class="compare-grid">
+                        <div class="compare-col bad">
+                            <h4>🎨 Temperatura Alta (0.8+)</h4>
+                            <p><strong>IA poeta.</strong> Boa para discursos. Ruim para sentenças.</p>
+                        </div>
+                        <div class="compare-col good">
+                            <h4>📊 Temperatura Baixa (0.1)</h4>
+                            <p><strong>IA analista.</strong> Repetitiva, seca e fiel aos dados.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box info">
+                        <div class="hl-title">⚖️ Aplicação Jurídica</div>
+                        <p>Para tarefas jurídicas, busque sempre a <strong>temperatura mais baixa</strong> (exatidão).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M1: HUMAN IN THE LOOP -->
+            <div class="section" id="m1-human">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção G</div>
+                    <h2>Human-in-the-loop</h2>
+                    <p>Supervisão Humana: por que a IA nunca pode decidir sozinha.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">👤</span> O Conceito</h3>
+                    <p>A IA <strong>não possui CPF</strong>, não tem volição (vontade) e <strong>não pode ser
+                            responsabilizada</strong>.</p>
+                    <h4>O Fluxo Correto</h4>
+                    <p style="font-size:1.1rem;text-align:center;padding:16px 0;color:var(--accent2)"><strong>IA
+                            (Minuta) → Humano (Revisão) → Humano (Decisão)</strong></p>
+                    <div class="highlight-box warn">
+                        <div class="hl-title">⚠️ Viés de Automação</div>
+                        <p>Treine o ceticismo: <strong>sempre verifique a fonte</strong> (clique no link). O perigo é
+                            confiar cegamente na máquina.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M1: SEGURANÇA -->
+            <div class="section" id="m1-seguranca">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.2</div>
+                    <h2>Segurança da Informação</h2>
+                    <p>A Regra de Ouro: onde colocar o dado?</p>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ambiente</th>
+                                <th>Risco</th>
+                                <th>Regra de Ouro</th>
+                                <th>Uso Permitido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🔴 A: IA Pública</strong><br>(Gemini Web, ChatGPT)</td>
+                                <td>Dados podem treinar o modelo global</td>
+                                <td><strong>PROIBIDO</strong> inserir dados pessoais, nomes, nº de processos, segredos
+                                    de justiça</td>
+                                <td>Correção gramatical genérica, resumo de doutrina pública, planejamento</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🟢 B: IA Corporativa</strong><br>(Assistente TJMG)</td>
+                                <td>Ambiente Enterprise fechado e seguro</td>
+                                <td><strong>PERMITIDO</strong> uso com dados reais</td>
+                                <td>Análise de processos reais, minutas com dados das partes, resumo de depoimentos
+                                    sigilosos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="quiz">
+                    <h4>🧪 Teste seu Conhecimento</h4>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Posso colar um processo em segredo de
+                        justiça no ChatGPT gratuito</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Dados reais de processos
+                        só devem ir para o Assistente TJMG (ambiente corporativo)</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Qualquer IA é segura desde que eu não
+                        compartilhe o link</div>
+                    <div class="quiz-feedback"
+                        data-right="Use apenas o ambiente corporativo (Assistente TJMG) para dados sensíveis."></div>
+                </div>
+            </div>
+
+            <!-- M1: REGULATÓRIO -->
+            <div class="section" id="m1-regulatorio">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.3</div>
+                    <h2>Marco Regulatório</h2>
+                    <p>As normas que regem o uso de IA no TJMG.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">📜</span> Portaria Conjunta nº 1.612/PR/2024</h3>
+                    <p>Institui a <strong>governança de IA no TJMG</strong>.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">⚖️</span> Resolução 332 do CNJ</h3>
+                    <p>Estabelece a <strong>ética, transparência e auditabilidade</strong>. O uso de IA deve buscar a
+                        celeridade, mas jamais sacrificar a segurança jurídica.</p>
+                </div>
+            </div>
+
+            <!-- M2: NOTEBOOKLM -->
+            <div class="section" id="m2-notebook">
+                <div class="section-hero">
+                    <div class="section-badge badge-m2">Módulo 2 · Seção 2.1</div>
+                    <h2>NotebookLM: O "Analista de Doutrina"</h2>
+                    <p>Diferente do Gemini (que sabe "um pouco de tudo"), o NotebookLM funciona como um <strong>"Jardim
+                            Murado"</strong>: um cérebro fechado que só sabe o que você ensina.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🔒</span> Mecânica da Confiança (Citações)</h3>
+                    <p>O NotebookLM usa a técnica de <strong>Grounding</strong>. Toda resposta traz pequenos números
+                        cinzas <strong>[1, 2]</strong> no final da frase.</p>
+                    <p>Ao clicar no número, a ferramenta abre o PDF original e <strong>destaca o parágrafo
+                            exato</strong> de onde tirou a informação. Isso prova que a IA não inventou.</p>
+                </div>
+                <div class="accordion">
+                    <div class="acc-item">
+                        <div class="acc-header">📋 Cenários de Uso no TJMG <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ul>
+                                <li><strong>Tira-Dúvidas de Normas:</strong> Suba o Código de Normas da Corregedoria e
+                                    pergunte: <em>"Qual o prazo para a remessa dos autos em caso de recurso
+                                        adesivo?"</em></li>
+                                <li><strong>Estudo da Lei Nova:</strong> Suba o PDF da Reforma Tributária e pergunte:
+                                    <em>"Quais os impactos nos processos de execução fiscal?"</em></li>
+                                <li><strong>Onboarding:</strong> Crie um caderno com manuais do gabinete. O estagiário
+                                    tira dúvidas com a IA.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">🎧 Recurso "Áudio Overview" (Podcast Jurídico) <span
+                                class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <p>Transforma os textos inseridos em uma <strong>conversa de áudio fluida</strong> (estilo
+                                rádio). Ideal para ouvir o resumo de um caso complexo ou nova doutrina no trânsito.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box warn">
+                    <div class="hl-title">⚠️ Protocolo de Segurança</div>
+                    <p>No NotebookLM, use apenas <strong>documentos públicos</strong> (Doutrina, Leis, Manuais). Não
+                        suba processos em Segredo de Justiça.</p>
+                </div>
+            </div>
+
+            <!-- M2: WORKSPACE -->
+            <div class="section" id="m2-workspace">
+                <div class="section-hero">
+                    <div class="section-badge badge-m2">Módulo 2 · Seção 2.2</div>
+                    <h2>Gemini no Workspace</h2>
+                    <p>A IA sai do chat e entra nos aplicativos de rotina. Busque o ícone ✨ ou o Painel Lateral.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">📧</span> No Gmail: Domando a Caixa de Entrada</h3>
+                    <ul>
+                        <li><strong>Resumo de Threads:</strong> <em>"O que ficou decidido nesta conversa e quem ficou
+                                responsável pelo quê?"</em></li>
+                        <li><strong>Polidez Instantânea:</strong> Escreva <em>"Não posso ir, tenho pauta cheia"</em> →
+                            Com "Formalizar", vira: <em>"Prezados, agradeço o convite, porém, devido a compromissos
+                                prévios em pauta de audiências, não poderei comparecer."</em></li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">📝</span> No Google Docs: Fim da Tela em Branco</h3>
+                    <ul>
+                        <li><strong>Minutas Administrativas:</strong> <em>"Escreva uma minuta de Portaria disciplinando
+                                o uso do estacionamento do Fórum."</em></li>
+                        <li><strong>Reescrita de Tom:</strong> Selecione um texto técnico de TI → <em>"Reescreva em
+                                linguagem simples para servidores leigos."</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- M2: PROMPT -->
+            <div class="section" id="m2-prompt">
+                <div class="section-hero">
+                    <div class="section-badge badge-m2">Módulo 2 · Seção 2.3</div>
+                    <h2>Engenharia de Prompt Jurídico</h2>
+                    <p>A IA é um espelho. Se o pedido é ruim, a resposta é ruim. "Promptar" é delegar tarefa.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🎯</span> A Fórmula C.P.T.R.</h3>
+                    <p>O "Requisito Processual" do Prompt:</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Letra</th>
+                                    <th>Significado</th>
+                                    <th>Exemplo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>C</strong></td>
+                                    <td>Contexto</td>
+                                    <td>"Sou Juiz de Direito em uma Vara de Família."</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>P</strong></td>
+                                    <td>Persona</td>
+                                    <td>"Atue como especialista em Psicologia Forense."</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>T</strong></td>
+                                    <td>Tarefa</td>
+                                    <td>"Resuma o laudo psicossocial abaixo."</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>R</strong></td>
+                                    <td>Restrição</td>
+                                    <td>"Use tópicos, linguagem neutra e cite as páginas."</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="compare-grid">
+                    <div class="compare-col bad">
+                        <h4>❌ Prompt "Preguiçoso"</h4>
+                        <p>"Resuma isso."</p>
+                        <p>"Crie um e-mail de cobrança."</p>
+                    </div>
+                    <div class="compare-col good">
+                        <h4>✅ Prompt "Engenheiro"</h4>
+                        <p>[C/P] "Atue como Assessor Cível. [T] Resuma a contestação, destacando preliminares de mérito.
+                            [R] Formate em bullet points."</p>
+                        <p>[C] "Sou Chefe de Secretaria. [T] Redija e-mail cobrando laudo atrasado. [R] Cordial mas
+                            firme, prazo de 48h."</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="acc-item">
+                        <div class="acc-header">🎓 Dicas Avançadas <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <p><strong>1. Few-Shot Prompting (Dê o Exemplo):</strong> Cole 3 exemplos de ementas
+                                anteriores e diga: <em>"Aprenda meu estilo com os exemplos acima. Escreva a ementa para
+                                    este novo caso."</em></p>
+                            <p><strong>2. Chain of Thought (Cadeia de Pensamento):</strong> Adicione ao final:
+                                <em>"Antes de dar a conclusão, pense passo a passo e explique seu raciocínio
+                                    lógico."</em> Isso obriga a IA a raciocinar antes, reduzindo erros.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M2: DESAFIO -->
+            <div class="section" id="m2-desafio">
+                <div class="section-hero">
+                    <div class="section-badge badge-m2">Módulo 2 · Desafio</div>
+                    <h2>Desafio: O Ofício Relâmpago ⚡</h2>
+                </div>
+                <div class="challenge">
+                    <h3>🏆 Desafio Individual</h3>
+                    <ol>
+                        <li>Abra um <strong>Google Doc</strong> em branco.</li>
+                        <li><strong>Cenário:</strong> O ar-condicionado da vara quebrou e as audiências presenciais
+                            foram canceladas.</li>
+                        <li>Digite de qualquer jeito: <em>"ar quebrou, tá muito quente, cancela tudo hoje"</em>.</li>
+                        <li>Selecione o texto e use o Gemini (<strong>"Ajude-me a escrever"</strong>) com o comando:
+                            <em>"Transforme em um comunicado formal aos advogados, pedindo desculpas e informando
+                                reagendamento."</em></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- M3: ASSISTENTE TJMG -->
+            <div class="section" id="m3-assistente">
+                <div class="section-hero">
+                    <div class="section-badge badge-m3">Módulo 3 · Seção 3.1</div>
+                    <h2>Assistente TJMG: O "Copiloto" Oficial</h2>
+                    <p>A única ferramenta que "vive" dentro dos sistemas do tribunal, com contrato de sigilo. Ambiente
+                        <strong>verde e seguro</strong>.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🔌</span> Onde Vive? (Integração)</h3>
+                    <p>É uma <strong>Extensão de Navegador</strong> que flutua sobre os sistemas:</p>
+                    <ul>
+                        <li><strong>PJe (1º Grau):</strong> Ícone na barra lateral ou flutuante</li>
+                        <li><strong>Themis (2º Grau):</strong> Botão direito sobre o processo → Menu Assistente de IA
+                        </li>
+                        <li><strong>MeuGabinete:</strong> Botão "Minutar" já conectado ao processo</li>
+                    </ul>
+                </div>
+                <div class="accordion">
+                    <div class="acc-item">
+                        <div class="acc-header">📖 Func. 1: Leitura e Resumo <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ul>
+                                <li><strong>Resumo Consolidado:</strong> Selecione Inicial + Contestação + Laudo →
+                                    narrativa cronológica única</li>
+                                <li><strong>Rastreabilidade (Grounding):</strong> Resumos trazem o ID da peça. Clique
+                                    para conferir a fonte</li>
+                                <li><strong>Integração:</strong> Botão "Enviar ao editor" → minuta aparece no PJe</li>
+                                <li><strong>Seleção Inteligente:</strong> Marque na árvore do processo apenas o que
+                                    importa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">💬 Func. 2: Prompt Livre e Multi-Modelos <span class="arrow">▼</span>
+                        </div>
+                        <div class="acc-body">
+                            <p>No menu "Prompt Livre", escolha qual IA usar:</p>
+                            <ul>
+                                <li><strong>🔵 Gemini 2.5 Pro:</strong> Padrão. Maior janela de contexto</li>
+                                <li><strong>⚫ GPT-4o:</strong> Excelente para raciocínio lógico e argumentos complexos
+                                </li>
+                                <li><strong>🟠 Claude 3.7 Sonnet:</strong> Redação mais natural e empática</li>
+                            </ul>
+                            <p><strong>Contexto Híbrido:</strong> Documentos do PJe + upload de arquivos locais (até
+                                10MB, máx. 50MB total).</p>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">📚 Func. 3: Biblioteca de Prompts <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ul>
+                                <li><strong>Minha Biblioteca:</strong> Seus prompts pessoais salvos</li>
+                                <li><strong>Biblioteca Pública:</strong> Prompts submetidos por servidores, com
+                                    curadoria humana e selo verde ✅</li>
+                                <li><strong>Prompt Restrito ("Caixa Preta"):</strong> Colegas veem o botão (ex:
+                                    "Calculadora de Pena"), usam, mas não veem o código</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">📋 Func. 4: Gerador de Ementas <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <p><strong>Fluxo:</strong> Cole o Voto/Acórdão → Clique "Gerar Ementa".</p>
+                            <p><strong>Resultado:</strong> Estrutura padronizada CNJ (Caso, Questão, Razões, Dispositivo
+                                e Tese).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M3: TRANSCRITOR -->
+            <div class="section" id="m3-transcritor">
+                <div class="section-hero">
+                    <div class="section-badge badge-m3">Módulo 3 · Seção 3.2</div>
+                    <h2>Transcritor de Audiências</h2>
+                    <p>A solução para a "Síndrome do Fone de Ouvido": parar de ouvir 2h para achar 1 minuto.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🎙️</span> O Conceito</h3>
+                    <p>Converte o áudio das audiências em <strong>texto bruto</strong>. Não é uma Ata Notarial — o
+                        objetivo é usar como <strong>índice de busca (Ctrl+F)</strong> para encontrar o ponto exato da
+                        prova oral.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🐈</span> A Integração (O "Pulo do Gato")</h3>
+                    <p>Conecte o Transcritor com a IA Generativa:</p>
+                    <ol>
+                        <li>Acesse a transcrição e copie o texto do depoimento-chave</li>
+                        <li>Abra o <strong>Assistente TJMG</strong> (Prompt Livre)</li>
+                        <li>Cole o texto</li>
+                        <li>Aplique o Prompt: <em>"Analise o depoimento da Testemunha A e destaque contradições em
+                                relação aos fatos narrados na Inicial."</em></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- M3: DESAFIO -->
+            <div class="section" id="m3-desafio">
+                <div class="section-hero">
+                    <div class="section-badge badge-m3">Módulo 3 · Desafio</div>
+                    <h2>Desafio: O Sommelier de Modelos 🍷</h2>
+                </div>
+                <div class="challenge">
+                    <h3>🏆 Desafio Individual</h3>
+                    <p><strong>Cenário:</strong> Caso de Direito de Família (Guarda) com depoimentos conflitantes.</p>
+                    <ul>
+                        <li><strong>Ação A (O Analista):</strong> Gemini 2.5 Pro → <em>"Crie uma tabela cronológica
+                                comparando os depoimentos das testemunhas X e Y"</em></li>
+                        <li><strong>Ação B (O Redator):</strong> Claude 3.7 Sonnet → <em>"Redija um relatório final com
+                                tom empático e linguagem simples"</em></li>
+                    </ul>
+                    <p><strong>Reflexão:</strong> Compare os resultados e pense sobre as "personalidades" das IAs.</p>
+                </div>
+            </div>
+
+            <!-- M4: RESPONSABILIDADE -->
+            <div class="section" id="m4-responsabilidade">
+                <div class="section-hero">
+                    <div class="section-badge badge-m4">Módulo 4 · Seção 4.1</div>
+                    <h2>Responsabilidade e Boas Práticas</h2>
+                    <p>Reflexão sobre automação, valorização intelectual e responsabilidade legal.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">✍️</span> O Rascunho e a Assinatura</h3>
+                    <p>A máquina erra. Sua assinatura é <strong>indispensável</strong>. Encare a IA como ferramenta de
+                        <strong>Rascunho</strong> — é mais fácil corrigir um texto pronto do que começar do zero.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">💎</span> Valorização Intelectual</h3>
+                    <p>A IA elimina a tarefa robótica (resumir, formatar, transcrever). Isso libera você para o que é
+                        <strong>insubstituível: julgar, ter empatia e analisar teses complexas</strong>.</p>
+                    <div class="analogy">
+                        <p>"A IA não substitui o servidor; o <strong>servidor que usa IA</strong> substitui o que não
+                            usa."</p>
+                    </div>
+                </div>
+                <div class="highlight-box danger">
+                    <div class="hl-title">⚖️ Responsabilidade Legal</div>
+                    <p>O Google não tem CPF. <strong>Quem assina a peça é o humano.</strong> Se a IA citar uma lei
+                        revogada e você assinar, a responsabilidade funcional é sua.</p>
+                    <p style="text-align:center;font-size:1.05rem;margin-top:12px;color:var(--accent2)"><strong>IA
+                            produz → Humano revisa → Humano assina</strong></p>
+                </div>
+            </div>
+
+            <!-- M4: LABORATÓRIO -->
+            <div class="section" id="m4-laboratorio">
+                <div class="section-hero">
+                    <div class="section-badge badge-m4">Módulo 4 · Seção 4.2</div>
+                    <h2>O Laboratório Seguro</h2>
+                    <p>Material para prática sem risco jurídico.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🧪</span> Caso Fictício Sanitizado</h3>
+                    <p>A EJEF disponibiliza material fictício para experimentação:</p>
+                    <ul>
+                        <li><strong>Processo:</strong> João da Silva vs. Construtora Modelo</li>
+                        <li><strong>Conteúdo:</strong> PDFs de Inicial, Contestação e Sentença criados artificialmente
+                            (com erros propositais)</li>
+                        <li>Permite experimentação <strong>sem risco jurídico ou violação de LGPD</strong></li>
+                    </ul>
+                </div>
+                <div class="highlight-box success">
+                    <div class="hl-title">🎓 Parabéns!</div>
+                    <p>Você completou a apostila! Agora volte à prática: use o <strong>Assistente TJMG</strong> com o
+                        caso fictício e aplique a Fórmula C.P.T.R. em seus prompts.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const visited = new Set(['home']);
+        function goTo(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) { el.classList.add('active'); el.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            const nav = document.querySelector(`.nav-item[data-section="${id}"]`);
+            if (nav) nav.classList.add('active');
+            document.getElementById('topbarTitle').textContent = nav ? nav.textContent : '';
+            document.querySelector('.sidebar').classList.remove('open');
+            visited.add(id);
+            updateProgress();
+        }
+        document.querySelectorAll('.nav-item').forEach(n => {
+            n.addEventListener('click', () => goTo(n.dataset.section));
+        });
+        document.querySelectorAll('.acc-header').forEach(h => {
+            h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+        });
+        function updateProgress() {
+            const total = document.querySelectorAll('.nav-item[data-section]').length;
+            const pct = Math.round((visited.size / total) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = pct + '%';
+        }
+        let fontBig = false;
+        function toggleFontSize() {
+            fontBig = !fontBig;
+            document.querySelector('.content').style.fontSize = fontBig ? '1.1rem' : '';
+        }
+        function checkQuiz(btn, correct) {
+            const quiz = btn.closest('.quiz');
+            quiz.querySelectorAll('.quiz-option').forEach(o => {
+                o.style.pointerEvents = 'none';
+                if (o.dataset.correct === 'true') o.classList.add('correct');
+                else if (o === btn && !correct) o.classList.add('wrong');
+            });
+            const fb = quiz.querySelector('.quiz-feedback');
+            fb.style.display = 'block';
+            fb.style.background = correct ? 'var(--green-bg)' : 'var(--red-bg)';
+            fb.style.color = correct ? 'var(--green)' : 'var(--red)';
+            fb.textContent = correct ? '✅ Correto! ' + fb.dataset.right : '❌ Incorreto. ' + fb.dataset.right;
+        }
+        updateProgress();
+    </script>
+</body>
+
+</html>
