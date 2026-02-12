@@ -90,11 +90,31 @@
             transition: transform .3s
         }
 
-        .sidebar-header img.logo {
-            width: 140px;
-            max-width: 100%;
-            height: auto;
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border);
+            text-align: center
+        }
+
+        .sidebar-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             margin-bottom: 12px
+        }
+
+        .sidebar-logos img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply
+        }
+
+        .sidebar-logos .logo-divider {
+            width: 1px;
+            height: 28px;
+            background: var(--border)
         }
 
         .sidebar-header h1 {
@@ -758,53 +778,7 @@
         }
 
         /* HOME SECTION */
-        .home-logos-banner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            padding: 40px 0;
-            margin-bottom: 32px;
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, .04)
-        }
 
-        .home-logos-banner img {
-            height: 80px;
-            width: auto;
-            object-fit: contain
-        }
-
-        .home-logos-banner .banner-divider {
-            width: 1px;
-            height: 60px;
-            background: var(--border)
-        }
-
-        .section-footer-logos {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            padding: 32px 0 0;
-            margin-top: 40px;
-            border-top: 1px solid var(--border);
-            opacity: .5
-        }
-
-        .section-footer-logos img {
-            height: 36px;
-            width: auto;
-            object-fit: contain
-        }
-
-        .section-footer-logos .footer-divider {
-            width: 1px;
-            height: 28px;
-            background: var(--border)
-        }
 
         .home-grid {
             display: grid;
@@ -851,14 +825,7 @@
                 grid-template-columns: 1fr
             }
 
-            .home-logos-banner {
-                gap: 20px;
-                padding: 24px 0
-            }
 
-            .home-logos-banner img {
-                height: 50px
-            }
         }
     </style>
 </head>
@@ -869,7 +836,11 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img class="logo" src="tjmg_logo.png" alt="Logo TJMG">
+            <div class="sidebar-logos">
+                <img src="tjmg_logo.png" alt="Logo TJMG">
+                <div class="logo-divider"></div>
+                <img src="ejef_logo.png" alt="Logo EJEF">
+            </div>
             <h1>Apostila IA</h1>
             <p>TJMG · EJEF – Curso de IA</p>
         </div>
@@ -936,11 +907,7 @@
 
             <!-- HOME -->
             <div class="section active" id="home">
-                <div class="home-logos-banner">
-                    <img src="tjmg_logo.png" alt="TJMG">
-                    <div class="banner-divider"></div>
-                    <img src="ejef_logo.png" alt="EJEF">
-                </div>
+
                 <div class="section-hero">
                     <div class="section-badge badge-m1">📘 Apostila do Participante</div>
                     <h2>Inteligência Artificial no TJMG</h2>
