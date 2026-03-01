@@ -1046,6 +1046,231 @@
                 font-size: .8rem
             }
         }
+
+        /* DARK MODE */
+        body.dark {
+            --bg: #0f172a;
+            --bg2: #1e293b;
+            --bg3: #334155;
+            --card: #1e293b;
+            --card-hover: #334155;
+            --accent: #60a5fa;
+            --accent2: #93c5fd;
+            --accent-glow: rgba(96, 165, 250, .1);
+            --green: #4ade80;
+            --green-bg: rgba(74, 222, 128, .1);
+            --red: #f87171;
+            --red-bg: rgba(248, 113, 113, .1);
+            --yellow: #fbbf24;
+            --yellow-bg: rgba(251, 191, 36, .1);
+            --blue: #60a5fa;
+            --blue-bg: rgba(96, 165, 250, .1);
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --border: #334155
+        }
+
+        body.dark .topbar {
+            background: rgba(15, 23, 42, .9)
+        }
+
+        body.dark .menu-toggle {
+            background: rgba(30, 41, 59, .92);
+            border-color: var(--border)
+        }
+
+        body.dark .sidebar-overlay.active {
+            background: rgba(0, 0, 0, .6)
+        }
+
+        body.dark .logo-tjmg {
+            mix-blend-mode: normal;
+            filter: brightness(1.5)
+        }
+
+        body.dark ::-webkit-scrollbar-track {
+            background: #1e293b
+        }
+
+        body.dark ::-webkit-scrollbar-thumb {
+            background: #475569
+        }
+
+        /* NAV BUTTONS (Anterior/Próximo) */
+        .section-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border)
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--accent2);
+            cursor: pointer;
+            font-size: .88rem;
+            font-weight: 600;
+            font-family: var(--font);
+            transition: .2s;
+            text-decoration: none
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+            transform: translateY(-2px)
+        }
+
+        .nav-btn.hidden {
+            visibility: hidden
+        }
+
+        /* GLOSSARY */
+        .glossary-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px
+        }
+
+        .glossary-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 20px
+        }
+
+        .glossary-item dt {
+            font-weight: 700;
+            font-size: .95rem;
+            color: var(--accent2);
+            margin-bottom: 4px
+        }
+
+        .glossary-item dd {
+            font-size: .88rem;
+            color: var(--text2);
+            line-height: 1.7
+        }
+
+        /* SEARCH */
+        .search-wrapper {
+            position: relative;
+            margin-left: 8px
+        }
+
+        .search-input {
+            width: 0;
+            padding: 0;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: .85rem;
+            transition: .3s;
+            outline: none;
+            height: 36px
+        }
+
+        .search-input.open {
+            width: 200px;
+            padding: 0 12px;
+            border-color: var(--border)
+        }
+
+        .search-input.open:focus {
+            border-color: var(--accent)
+        }
+
+        @media(max-width:768px) {
+            .search-input.open {
+                width: 140px
+            }
+
+            .section-nav {
+                margin-top: 28px;
+                padding-top: 16px
+            }
+
+            .nav-btn {
+                padding: 10px 14px;
+                font-size: .82rem
+            }
+        }
+
+        @media(max-width:480px) {
+            .search-input.open {
+                width: 100px;
+                font-size: .8rem
+            }
+        }
+
+        /* READING TIME */
+        .reading-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .78rem;
+            color: var(--text3);
+            margin-left: 12px;
+            font-weight: 500
+        }
+
+        /* NOTES */
+        .notes-area {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border)
+        }
+
+        .notes-area summary {
+            cursor: pointer;
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--accent2);
+            margin-bottom: 8px
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg2);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: .88rem;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color .2s
+        }
+
+        .notes-textarea:focus {
+            border-color: var(--accent)
+        }
+
+        .notes-saved {
+            font-size: .75rem;
+            color: var(--green);
+            margin-top: 4px;
+            opacity: 0;
+            transition: opacity .3s
+        }
+
+        .notes-saved.show {
+            opacity: 1
+        }
     </style>
 </head>
 
@@ -1067,6 +1292,7 @@
         <nav class="sidebar-nav" id="sidebarNav">
             <div class="nav-module">
                 <div class="nav-item active" data-section="home">🏠 Início</div>
+                <div class="nav-item" data-section="glossario">📖 Glossário</div>
             </div>
             <div class="nav-module">
                 <div class="nav-module-title"><span class="mod-icon mod1-icon">1</span> Fundamentos e Ética</div>
@@ -1075,6 +1301,7 @@
                     <div class="nav-item" data-section="m1-tokens">Tokens – A Moeda</div>
                     <div class="nav-item" data-section="m1-contexto">Janela de Contexto</div>
                     <div class="nav-item" data-section="m1-modelos">Ecossistema de Modelos</div>
+                    <div class="nav-item" data-section="m1-multimodal">Multimodalidade</div>
                     <div class="nav-item" data-section="m1-alucinacao">Alucinação</div>
                     <div class="nav-item" data-section="m1-temperatura">Temperatura</div>
                     <div class="nav-item" data-section="m1-human">Human-in-the-loop</div>
@@ -1118,9 +1345,17 @@
 
     <div class="main">
         <div class="topbar">
-            <div class="topbar-title" id="topbarTitle">Início</div>
+            <div style="display:flex;align-items:center;gap:4px">
+                <div class="topbar-title" id="topbarTitle">Início</div>
+                <span class="reading-time" id="readingTime"></span>
+            </div>
             <div class="topbar-actions">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar na apostila..." onkeyup="handleSearch(event)">
+                </div>
+                <button class="btn-icon" onclick="toggleSearch()" title="Buscar">🔍</button>
                 <button class="btn-icon" onclick="toggleFontSize()" title="Tamanho da fonte">Aa</button>
+                <button class="btn-icon" id="darkToggle" onclick="toggleDarkMode()" title="Modo escuro">🌙</button>
             </div>
         </div>
         <div class="content" id="contentArea">
@@ -1158,10 +1393,77 @@
                 </div>
             </div>
 
+            <!-- GLOSSÁRIO -->
+            <div class="section" id="glossario">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">📖 Referência</div>
+                    <h2>Glossário de Termos</h2>
+                    <p>Consulta rápida dos principais termos técnicos usados nesta apostila.</p>
+                </div>
+                <div class="glossary-grid">
+                    <div class="glossary-item">
+                        <dt>LLM (Large Language Model)</dt>
+                        <dd>Modelo de linguagem grande — rede neural treinada com textos massivos para gerar e compreender linguagem natural.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Token</dt>
+                        <dd>Unidade mínima de processamento da IA. Pode ser uma palavra, sílaba ou caractere especial. ~1.000 tokens ≈ 750 palavras em português.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Janela de Contexto</dt>
+                        <dd>Quantidade máxima de tokens que o modelo consegue processar de uma vez. Quanto maior, mais texto a IA "segura na cabeça".</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Alucinação</dt>
+                        <dd>Quando a IA gera informação falsa mas que parece verdadeira e coerente. Pode inventar leis, jurisprudência ou fatos.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Grounding (Ancoragem)</dt>
+                        <dd>Técnica que obriga a IA a responder apenas com base em documentos fornecidos, reduzindo drasticamente a alucinação.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>RAG (Retrieval-Augmented Generation)</dt>
+                        <dd>Mecanismo que combina busca em documentos + geração de texto. A IA primeiro encontra trechos relevantes e depois gera a resposta citando fontes.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Temperatura</dt>
+                        <dd>Parâmetro (0 a 1) que controla a "criatividade" da IA. Baixa = precisa e repetitiva. Alta = criativa e imprevisível.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Human-in-the-loop</dt>
+                        <dd>Princípio que exige supervisão humana em todas as etapas do uso de IA. A IA sugere; o humano decide e assina.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Few-Shot Prompting</dt>
+                        <dd>Técnica de prompt onde você fornece exemplos do resultado desejado antes de pedir à IA que gere o seu.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Chain of Thought (CoT)</dt>
+                        <dd>Técnica que pede à IA para "pensar passo a passo", explicitando seu raciocínio antes de dar a resposta final.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Multimodalidade</dt>
+                        <dd>Capacidade da IA de processar múltiplos tipos de dados (texto, imagem, áudio, vídeo) na mesma conversa.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Knowledge Cutoff (Data de Corte)</dt>
+                        <dd>Data limite do treinamento do modelo. A IA não conhece fatos, leis ou jurisprudência publicados após essa data.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Viés / Bias</dt>
+                        <dd>Preconceitos presentes nos dados de treinamento que podem ser reproduzidos pela IA em suas respostas.</dd>
+                    </div>
+                    <div class="glossary-item">
+                        <dt>Prompt</dt>
+                        <dd>A instrução ou pergunta que você envia à IA. A qualidade do prompt determina a qualidade da resposta.</dd>
+                    </div>
+                </div>
+            </div>
+
             <!-- M1: LLM -->
             <div class="section" id="m1-llm">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção A</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.1</div>
                     <h2>LLM – O Motor da IA</h2>
                     <p>Entenda como funcionam os Modelos de Linguagem Grande que estão por trás do ChatGPT, Gemini e
                         Claude.</p>
@@ -1214,7 +1516,7 @@
             <!-- M1: TOKENS -->
             <div class="section" id="m1-tokens">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção B</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.2</div>
                     <h2>Tokens – A Moeda da IA</h2>
                     <p>A IA não lê palavras como nós. Ela processa códigos numéricos chamados <strong>Tokens</strong>.
                     </p>
@@ -1240,7 +1542,7 @@
             <!-- M1: JANELA DE CONTEXTO -->
             <div class="section" id="m1-contexto">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção C</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.3</div>
                     <h2>Janela de Contexto</h2>
                     <p>Este é o conceito <strong>mais importante</strong> para a análise de processos volumosos.</p>
                 </div>
@@ -1264,7 +1566,7 @@
             <!-- M1: ECOSSISTEMA DE MODELOS -->
             <div class="section" id="m1-modelos">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção D</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.4</div>
                     <h2>O Ecossistema de Modelos</h2>
                     <p>A "Sopa de Letrinhas": conheça os principais modelos de IA do mercado.</p>
                 </div>
@@ -1300,10 +1602,34 @@
                 </div>
             </div>
 
+            <!-- M1: MULTIMODALIDADE -->
+            <div class="section" id="m1-multimodal">
+                <div class="section-hero">
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.5</div>
+                    <h2>Multimodalidade – Além do Texto</h2>
+                    <p>A IA não entende apenas palavras. Modelos multimodais processam <strong>texto, imagem, vídeo e áudio</strong> simultaneamente.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">👁️</span> O que é Multimodalidade?</h3>
+                    <p>Modelos como o <strong>Gemini</strong> são <strong>nativamente multimodais</strong>: eles "veem" imagens, "ouvem" áudios e "assistem" vídeos, além de ler textos. Tudo ao mesmo tempo, na mesma conversa.</p>
+                    <h4>Aplicações no Judiciário</h4>
+                    <ul>
+                        <li><strong>📸 Foto → Texto:</strong> Fotografou um documento antigo (manuscrito, certidão amarelada)? Suba a foto e peça: <em>"Transcreva o conteúdo deste documento."</em></li>
+                        <li><strong>🎥 Vídeo → Resumo:</strong> Envie o vídeo de uma diligência ou audiência e peça: <em>"Resuma os pontos principais deste vídeo."</em></li>
+                        <li><strong>🎵 Áudio → Análise:</strong> Grave um despacho verbal e envie ao Gemini: <em>"Transcreva e identifique as determinações."</em></li>
+                        <li><strong>📊 Tabela/Gráfico → Dados:</strong> Suba uma imagem de planilha ou gráfico: <em>"Extraia os dados desta tabela em formato de lista."</em></li>
+                    </ul>
+                </div>
+                <div class="highlight-box info">
+                    <div class="hl-title">💡 Dica Prática</div>
+                    <p>No <strong>Assistente TJMG</strong>, você pode enviar arquivos de diversos formatos. Use essa capacidade para <strong>analisar provas documentais fotografadas</strong>, gráficos de laudos periciais ou mapas anexados a processos ambientais.</p>
+                </div>
+            </div>
+
             <!-- M1: ALUCINAÇÃO -->
             <div class="section" id="m1-alucinacao">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção E</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.6</div>
                     <h2>Alucinação – O "Delírio Eloquente"</h2>
                     <p>Quando a IA inventa informação que parece perfeita, mas é falsa.</p>
                 </div>
@@ -1314,17 +1640,40 @@
                             confiança</strong>.</p>
                 </div>
                 <div class="concept-card">
+                    <h3><span class="card-icon">🚨</span> Exemplos Reais de Alucinação</h3>
+                    <ul>
+                        <li><strong>Jurisprudência Inventada:</strong> A IA pode citar "STJ, REsp 1.234.567/MG, Rel. Min. Fulano" — o número, o relator e a ementa parecem reais, mas <strong>o acórdão nunca existiu</strong>.</li>
+                        <li><strong>Lei Revogada:</strong> A IA pode fundamentar uma minuta com artigo de lei já revogado, porque o texto ainda existia nos dados de treinamento.</li>
+                        <li><strong>Dados Cruzados:</strong> A IA mistura fatos de processos diferentes, atribuindo depoimento de uma testemunha ao nome de outra.</li>
+                    </ul>
+                </div>
+                <div class="highlight-box danger">
+                    <div class="hl-title">📰 Caso Emblemático: "Mata Nativa vs. Avianca"</div>
+                    <p>Em 2023, um advogado americano usou o ChatGPT para pesquisar jurisprudência e <strong>citou em sua petição seis decisões judiciais que nunca existiram</strong>. A IA inventou nomes de casos, números de processos e ementas completas, todos com aparência perfeita. O advogado foi multado, e o caso virou símbolo mundial do risco de confiar cegamente em IA.</p>
+                    <p style="margin-top:8px"><strong>Lição:</strong> Sempre verifique a fonte — se a IA cita uma decisão, abra o link e confirme que ela existe.</p>
+                </div>
+                <div class="concept-card">
                     <h3><span class="card-icon">💉</span> A Vacina: Grounding (Ancoragem)</h3>
                     <p>A técnica é <strong>obrigar a IA a responder apenas com base no documento fornecido</strong> (PDF
                         do processo). Ferramentas como o <strong>NotebookLM</strong> e o <strong>Assistente
                             TJMG</strong> usam isso para reduzir drasticamente a alucinação.</p>
+                    <h4>Como funciona o RAG (Retrieval-Augmented Generation)</h4>
+                    <p>O <strong>RAG</strong> é o mecanismo por trás do Grounding. Em vez de gerar respostas "da cabeça", a IA primeiro <strong>busca trechos relevantes nos documentos fornecidos</strong> e depois <strong>gera a resposta citando essas fontes</strong>. É a diferença entre um aluno que "chuta" a prova e um que consulta o livro.</p>
+                </div>
+                <div class="quiz">
+                    <h4>🧪 Teste seu Conhecimento</h4>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Se a IA cita um REsp com número e relator, a jurisprudência é confiável</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Mesmo com citação detalhada, devo sempre verificar a fonte antes de usar</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Alucinação só acontece em IAs gratuitas, não no ambiente corporativo</div>
+                    <div class="quiz-feedback"
+                        data-right="A IA pode inventar citações perfeitas. Sempre confirme no sistema oficial (PJe, STJ, etc.)."></div>
                 </div>
             </div>
 
             <!-- M1: TEMPERATURA -->
             <div class="section" id="m1-temperatura">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção F</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.7</div>
                     <h2>Temperatura – O Botão de Criatividade</h2>
                     <p>Parâmetro que define se a IA será criativa ou precisa.</p>
                 </div>
@@ -1346,12 +1695,38 @@
                         </p>
                     </div>
                 </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🔬</span> Exemplo Prático: Mesmo Prompt, Temperaturas Diferentes</h3>
+                    <p><strong>Prompt:</strong> <em>"Resuma o dispositivo desta sentença."</em></p>
+                    <div class="compare-grid">
+                        <div class="compare-col good">
+                            <h4>🧊 Temperatura 0.1 (Precisa)</h4>
+                            <p>"Julgo procedente o pedido para condenar o réu ao pagamento de R$ 15.000,00 a título de danos morais."</p>
+                        </div>
+                        <div class="compare-col bad">
+                            <h4>🔥 Temperatura 0.9 (Criativa)</h4>
+                            <p>"A sentença concedeu uma reparação significativa à parte autora, reconhecendo o profundo impacto emocional sofrido, em valor que busca equilibrar justiça e razoabilidade."</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box warn">
+                        <div class="hl-title">💡 Dica</div>
+                        <p>No <strong>Assistente TJMG</strong>, a temperatura já vem pré-configurada para valores baixos, priorizando precisão e fidelidade ao conteúdo processual.</p>
+                    </div>
+                </div>
+                <div class="quiz">
+                    <h4>🧪 Teste seu Conhecimento</h4>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Temperatura alta é ideal para minutas e sentenças</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">A temperatura não afeta a qualidade da resposta</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Para tarefas jurídicas, temperatura baixa garante respostas mais fiéis aos dados</div>
+                    <div class="quiz-feedback"
+                        data-right="Temperatura baixa = respostas mais precisas e previsíveis, ideais para o Judiciário."></div>
+                </div>
             </div>
 
             <!-- M1: HUMAN IN THE LOOP -->
             <div class="section" id="m1-human">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção G</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.8</div>
                     <h2>Human-in-the-loop</h2>
                     <p>Supervisão Humana: por que a IA nunca pode decidir sozinha.</p>
                 </div>
@@ -1368,12 +1743,28 @@
                             confiar cegamente na máquina.</p>
                     </div>
                 </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">⚖️</span> Viés Algorítmico (Bias)</h3>
+                    <p>A IA aprende com textos produzidos por humanos — e humanos têm preconceitos. Isso significa que a IA pode <strong>reproduzir vieses de gênero, raça, classe social ou região</strong> presentes nos dados de treinamento.</p>
+                    <div class="highlight-box danger">
+                        <div class="hl-title">🚨 Risco no Judiciário</div>
+                        <p>Uma IA pode, por exemplo, usar involuntariamente <strong>linguagem mais dura ao descrever réus de determinados perfis</strong>, ou sugerir fundamentação que reflete vieses sociais. O assessor deve revisar a minuta com olhar crítico para <strong>imparcialidade</strong>.</p>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">📅</span> Data de Corte (Knowledge Cutoff)</h3>
+                    <p>Todo modelo de IA tem uma <strong>data limite de treinamento</strong>. Ele não sabe de fatos, leis ou decisões publicadas após essa data.</p>
+                    <div class="highlight-box info">
+                        <div class="hl-title">📌 Consequência Prática</div>
+                        <p>Se uma lei foi alterada na semana passada, a IA pode citar a <strong>versão revogada</strong> com total confiança. Por isso, para legislação recente, <strong>sempre use Grounding</strong> (suba o PDF atualizado) em vez de confiar no "conhecimento geral" da IA.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- M1: SEGURANÇA -->
             <div class="section" id="m1-seguranca">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.2</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.9</div>
                     <h2>Segurança da Informação</h2>
                     <p>A Regra de Ouro: onde colocar o dado?</p>
                 </div>
@@ -1421,7 +1812,7 @@
             <!-- M1: REGULATÓRIO -->
             <div class="section" id="m1-regulatorio">
                 <div class="section-hero">
-                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.3</div>
+                    <div class="section-badge badge-m1">Módulo 1 · Seção 1.10</div>
                     <h2>Marco Regulatório</h2>
                     <p>As normas que regem o uso de IA no TJMG.</p>
                 </div>
@@ -1614,6 +2005,13 @@
                                 <em>"Antes de dar a conclusão, pense passo a passo e explique seu raciocínio
                                     lógico."</em> Isso obriga a IA a raciocinar antes, reduzindo erros.
                             </p>
+                            <p><strong>3. Delimitadores (Separadores):</strong> Use <code>---</code> ou <code>"""</code> para separar o contexto do comando. Exemplo:<br>
+                                <em>"Analise o texto abaixo:<br>---<br>[Texto do processo]<br>---<br>Identifique os pedidos e fundamentos."</em><br>
+                                Isso evita que a IA confunda o texto a ser analisado com a instrução.
+                            </p>
+                            <p><strong>4. Prompt Negativo (Restrição Explícita):</strong> Adicione o que a IA <em>não</em> deve fazer:<br>
+                                <em>"NÃO cite legislação que não esteja nos documentos fornecidos. NÃO invente jurisprudência."</em></p>
+                            <p><strong>5. Iteração (Refine!):</strong> O prompt ideal <strong>raramente sai na primeira tentativa</strong>. Peça a resposta, avalie, e refine: <em>"Agora reescreva, mas em formato de tópicos e com linguagem mais formal."</em> Cada rodada melhora o resultado.</p>
                         </div>
                     </div>
                 </div>
@@ -1691,7 +2089,7 @@
                         </div>
                     </div>
                     <div class="acc-item">
-                        <div class="acc-header">� Func. 2: Gerador de Ementas <span class="arrow">▼</span></div>
+                        <div class="acc-header">📝 Func. 2: Gerador de Ementas <span class="arrow">▼</span></div>
                         <div class="acc-body">
                             <p><strong>Fluxo:</strong> Cole o Voto/Acórdão → Clique "Gerar Ementa".</p>
                             <p><strong>Resultado:</strong> Estrutura padronizada CNJ (Caso, Questão, Razões, Dispositivo
@@ -1699,7 +2097,7 @@
                         </div>
                     </div>
                     <div class="acc-item">
-                        <div class="acc-header">�💬 Func. 3: Prompt Livre e Multi-Modelos <span class="arrow">▼</span>
+                        <div class="acc-header">💬 Func. 3: Prompt Livre e Multi-Modelos <span class="arrow">▼</span>
                         </div>
                         <div class="acc-body">
                             <p>No menu "Prompt Livre", escolha qual IA usar:</p>
@@ -1839,6 +2237,78 @@
                     <p style="text-align:center;font-size:1.05rem;margin-top:12px;color:var(--accent2)"><strong>IA
                             produz → Humano revisa → Humano assina</strong></p>
                 </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">✅</span> Checklist de Revisão Pós-IA</h3>
+                    <p>Antes de assinar qualquer texto produzido com IA, percorra esta lista:</p>
+                    <ol>
+                        <li><strong>Legislação citada:</strong> Verifique se as leis, artigos e incisos existem e estão vigentes</li>
+                        <li><strong>Jurisprudência:</strong> Confira se os acórdãos, REsp e súmulas citados são reais (busque no site do tribunal)</li>
+                        <li><strong>Nomes e números:</strong> Confira nomes das partes, número do processo, datas e valores</li>
+                        <li><strong>Coerência lógica:</strong> A fundamentação é coerente com o dispositivo? Não há contradições?</li>
+                        <li><strong>Tom e linguagem:</strong> O texto está adequado ao receptor (advogado, parte leiga, outro juiz)?</li>
+                        <li><strong>Viés:</strong> O texto trata as partes de forma imparcial? Há alguma linguagem enviesada?</li>
+                        <li><strong>Completude:</strong> Todos os pedidos foram analisados? Faltou enfrentar algum argumento?</li>
+                    </ol>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">📋</span> Casos de Uso Práticos</h3>
+                    <p>Cenários reais com prompts sugeridos para o Assistente TJMG:</p>
+                    <div class="accordion">
+                        <div class="acc-item">
+                            <div class="acc-header">📑 Despacho Saneador <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Prompt:</strong> <em>"Atue como assessor cível. Analise a inicial e a contestação deste processo. Identifique os pontos controvertidos e fixe os temas de prova. Formate como despacho saneador."</em></p>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">⚖️ Comparar Teses em Embargos <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Prompt:</strong> <em>"Compare a tese da sentença com os argumentos dos embargos de declaração. Identifique se há omissão, contradição ou obscuridade real, ou se é mero pedido de reexame."</em></p>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">📊 Triagem de Acervo <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Prompt:</strong> <em>"Analise os 5 processos selecionados. Para cada um, classifique o tipo de ação, identifique o pedido principal e sugira o modelo de despacho padrão mais adequado."</em></p>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">✉️ Comunicação Administrativa <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Prompt:</strong> <em>"Redija um ofício ao Delegado de Polícia solicitando informações sobre o cumprimento do mandado de prisão expedido nestes autos. Tom formal e urgente."</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">❓</span> FAQ — Dúvidas Comuns</h3>
+                    <div class="accordion">
+                        <div class="acc-item">
+                            <div class="acc-header">A IA pode substituir o perito? <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Não.</strong> A IA pode <em>resumir</em> o laudo pericial, destacar pontos-chave e cruzar com outras peças, mas <strong>não substitui a perícia técnica</strong>. O perito tem responsabilidade técnica e legal; a IA é apenas uma ferramenta de análise textual.</p>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">Posso usar IA para análise de prova oral? <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Sim, com cautela.</strong> Transcreva a audiência, envie ao Assistente TJMG e peça para <em>"identificar contradições entre os depoimentos"</em>. Mas a <strong>valoração da prova é exclusivamente humana</strong> — a IA pode apontar inconsistências factuais, mas não julgar credibilidade.</p>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">Se a IA errar, quem responde? <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Quem assina.</strong> A Resolução 615/2024 do CNJ é clara: o ser humano é <strong>sempre o responsável final</strong>. A IA é ferramenta; o ato decisório é do juiz ou servidor que assina.</p>
+                            </div>
+                        </div>
+                        <div class="acc-item">
+                            <div class="acc-header">Posso usar ChatGPT gratuito para processos? <span class="arrow">▼</span></div>
+                            <div class="acc-body">
+                                <p><strong>Nunca com dados reais.</strong> O ChatGPT gratuito (e qualquer IA pública) pode usar seus dados para treinamento. Use <strong>apenas o Assistente TJMG</strong> para processos reais. O ChatGPT pode ser usado para dúvidas genéricas, correção gramatical ou estudo de doutrina pública.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- M4: LABORATÓRIO -->
@@ -1872,10 +2342,25 @@
     </div>
 
     <script>
-        const visited = new Set(['home']);
+        // ===== Section order for prev/next navigation =====
+        const sectionOrder = Array.from(document.querySelectorAll('.nav-item[data-section]')).map(n => n.dataset.section);
+
+        // ===== localStorage: load visited + notes + dark mode =====
+        const stored = localStorage.getItem('apostila-visited');
+        const visited = new Set(stored ? JSON.parse(stored) : ['home']);
         const sidebar = document.querySelector('.sidebar');
         const overlay = document.getElementById('sidebarOverlay');
         const menuToggle = document.getElementById('menuToggle');
+
+        // Restore dark mode
+        if (localStorage.getItem('apostila-dark') === 'true') {
+            document.body.classList.add('dark');
+            document.getElementById('darkToggle').textContent = '☀️';
+        }
+
+        function saveVisited() {
+            localStorage.setItem('apostila-visited', JSON.stringify([...visited]));
+        }
 
         function toggleSidebar() {
             const isOpen = sidebar.classList.toggle('open');
@@ -1892,12 +2377,25 @@
         menuToggle.addEventListener('click', toggleSidebar);
         overlay.addEventListener('click', closeSidebar);
 
+        // ===== Reading time estimator =====
+        function updateReadingTime(sectionId) {
+            const section = document.getElementById(sectionId);
+            const rt = document.getElementById('readingTime');
+            if (!section || !rt) return;
+            const text = section.textContent || '';
+            const words = text.trim().split(/\s+/).length;
+            const mins = Math.max(1, Math.round(words / 200));
+            rt.textContent = '⏱️ ~' + mins + ' min';
+        }
+
+        // ===== Navigation =====
         function goTo(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             const el = document.getElementById(id);
             if (el) {
                 el.classList.add('active');
-                // Use requestAnimationFrame to ensure DOM updates before scrolling
+                addNavButtons(id);
+                addNotesArea(id);
                 requestAnimationFrame(() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
@@ -1906,11 +2404,72 @@
             const nav = document.querySelector(`.nav-item[data-section="${id}"]`);
             if (nav) nav.classList.add('active');
             document.getElementById('topbarTitle').textContent = nav ? nav.textContent : '';
+            updateReadingTime(id);
             closeSidebar();
             visited.add(id);
+            saveVisited();
             updateProgress();
         }
 
+        // ===== Prev/Next navigation buttons =====
+        function addNavButtons(currentId) {
+            // Remove existing nav buttons
+            document.querySelectorAll('.section-nav').forEach(n => n.remove());
+            const idx = sectionOrder.indexOf(currentId);
+            if (idx === -1) return;
+            const section = document.getElementById(currentId);
+            if (!section) return;
+
+            const navDiv = document.createElement('div');
+            navDiv.className = 'section-nav';
+
+            const prevId = idx > 0 ? sectionOrder[idx - 1] : null;
+            const nextId = idx < sectionOrder.length - 1 ? sectionOrder[idx + 1] : null;
+
+            const prevNav = prevId ? document.querySelector(`.nav-item[data-section="${prevId}"]`) : null;
+            const nextNav = nextId ? document.querySelector(`.nav-item[data-section="${nextId}"]`) : null;
+
+            navDiv.innerHTML = `
+                <button class="nav-btn ${prevId ? '' : 'hidden'}" onclick="goTo('${prevId || ''}')">← ${prevNav ? prevNav.textContent : ''}</button>
+                <button class="nav-btn ${nextId ? '' : 'hidden'}" onclick="goTo('${nextId || ''}')">${nextNav ? nextNav.textContent : ''} →</button>
+            `;
+            section.appendChild(navDiv);
+        }
+
+        // ===== Notes per section (localStorage) =====
+        function addNotesArea(sectionId) {
+            document.querySelectorAll('.notes-area').forEach(n => n.remove());
+            if (sectionId === 'home' || sectionId === 'glossario') return;
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+
+            const notesDiv = document.createElement('div');
+            notesDiv.className = 'notes-area';
+            const savedNote = localStorage.getItem('apostila-note-' + sectionId) || '';
+            notesDiv.innerHTML = `
+                <details>
+                    <summary>📝 Minhas Anotações</summary>
+                    <textarea class="notes-textarea" placeholder="Escreva suas anotações para esta seção..." oninput="saveNote('${sectionId}', this)">${savedNote}</textarea>
+                    <div class="notes-saved" id="notesSaved-${sectionId}">✓ Salvo</div>
+                </details>
+            `;
+            section.appendChild(notesDiv);
+        }
+
+        let noteTimeout;
+        function saveNote(sectionId, textarea) {
+            clearTimeout(noteTimeout);
+            noteTimeout = setTimeout(() => {
+                localStorage.setItem('apostila-note-' + sectionId, textarea.value);
+                const saved = document.getElementById('notesSaved-' + sectionId);
+                if (saved) {
+                    saved.classList.add('show');
+                    setTimeout(() => saved.classList.remove('show'), 1500);
+                }
+            }, 500);
+        }
+
+        // ===== Event listeners =====
         document.querySelectorAll('.nav-item').forEach(n => {
             n.addEventListener('click', () => goTo(n.dataset.section));
         });
@@ -1918,6 +2477,7 @@
             h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
         });
 
+        // ===== Progress =====
         function updateProgress() {
             const total = document.querySelectorAll('.nav-item[data-section]').length;
             const pct = Math.round((visited.size / total) * 100);
@@ -1925,12 +2485,54 @@
             document.getElementById('progressText').textContent = pct + '%';
         }
 
+        // ===== Font size toggle =====
         let fontBig = false;
         function toggleFontSize() {
             fontBig = !fontBig;
             document.querySelector('.content').style.fontSize = fontBig ? '1.1rem' : '';
         }
 
+        // ===== Dark mode =====
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('apostila-dark', isDark);
+            document.getElementById('darkToggle').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        // ===== Search =====
+        function toggleSearch() {
+            const input = document.getElementById('searchInput');
+            input.classList.toggle('open');
+            if (input.classList.contains('open')) input.focus();
+            else { input.value = ''; clearHighlights(); }
+        }
+
+        function handleSearch(e) {
+            if (e.key === 'Escape') { toggleSearch(); return; }
+            const query = e.target.value.trim().toLowerCase();
+            clearHighlights();
+            if (query.length < 3) return;
+
+            // Search across all sections
+            const sections = document.querySelectorAll('.section');
+            let found = false;
+            sections.forEach(sec => {
+                if (sec.textContent.toLowerCase().includes(query)) {
+                    if (!found) {
+                        // Navigate to first match
+                        goTo(sec.id);
+                        found = true;
+                    }
+                }
+            });
+        }
+
+        function clearHighlights() {
+            // placeholder for future highlight feature
+        }
+
+        // ===== Quiz =====
         function checkQuiz(btn, correct) {
             const quiz = btn.closest('.quiz');
             quiz.querySelectorAll('.quiz-option').forEach(o => {
@@ -1945,7 +2547,9 @@
             fb.textContent = correct ? '✅ Correto! ' + fb.dataset.right : '❌ Incorreto. ' + fb.dataset.right;
         }
 
+        // ===== Init =====
         updateProgress();
+        updateReadingTime('home');
     </script>
 </body>
 
