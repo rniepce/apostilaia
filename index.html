@@ -1322,6 +1322,7 @@
                 <div class="nav-module-title"><span class="mod-icon mod3-icon">3</span> Ferramentas TJMG</div>
                 <div class="nav-items">
                     <div class="nav-item" data-section="m3-assistente">Assistente TJMG</div>
+                    <div class="nav-item" data-section="m3-transcritor-app">Transcritor TJMG</div>
                     <div class="nav-item" data-section="m3-transcritor">Transcritor de Audiências</div>
                     <div class="nav-item" data-section="m3-desafio">Desafio: Sommelier de Modelos</div>
                 </div>
@@ -1351,7 +1352,8 @@
             </div>
             <div class="topbar-actions">
                 <div class="search-wrapper">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar na apostila..." onkeyup="handleSearch(event)">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar na apostila..."
+                        onkeyup="handleSearch(event)">
                 </div>
                 <button class="btn-icon" onclick="toggleSearch()" title="Buscar">🔍</button>
                 <button class="btn-icon" onclick="toggleFontSize()" title="Tamanho da fonte">Aa</button>
@@ -1403,59 +1405,73 @@
                 <div class="glossary-grid">
                     <div class="glossary-item">
                         <dt>LLM (Large Language Model)</dt>
-                        <dd>Modelo de linguagem grande — rede neural treinada com textos massivos para gerar e compreender linguagem natural.</dd>
+                        <dd>Modelo de linguagem grande — rede neural treinada com textos massivos para gerar e
+                            compreender linguagem natural.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Token</dt>
-                        <dd>Unidade mínima de processamento da IA. Pode ser uma palavra, sílaba ou caractere especial. ~1.000 tokens ≈ 750 palavras em português.</dd>
+                        <dd>Unidade mínima de processamento da IA. Pode ser uma palavra, sílaba ou caractere especial.
+                            ~1.000 tokens ≈ 750 palavras em português.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Janela de Contexto</dt>
-                        <dd>Quantidade máxima de tokens que o modelo consegue processar de uma vez. Quanto maior, mais texto a IA "segura na cabeça".</dd>
+                        <dd>Quantidade máxima de tokens que o modelo consegue processar de uma vez. Quanto maior, mais
+                            texto a IA "segura na cabeça".</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Alucinação</dt>
-                        <dd>Quando a IA gera informação falsa mas que parece verdadeira e coerente. Pode inventar leis, jurisprudência ou fatos.</dd>
+                        <dd>Quando a IA gera informação falsa mas que parece verdadeira e coerente. Pode inventar leis,
+                            jurisprudência ou fatos.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Grounding (Ancoragem)</dt>
-                        <dd>Técnica que obriga a IA a responder apenas com base em documentos fornecidos, reduzindo drasticamente a alucinação.</dd>
+                        <dd>Técnica que obriga a IA a responder apenas com base em documentos fornecidos, reduzindo
+                            drasticamente a alucinação.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>RAG (Retrieval-Augmented Generation)</dt>
-                        <dd>Mecanismo que combina busca em documentos + geração de texto. A IA primeiro encontra trechos relevantes e depois gera a resposta citando fontes.</dd>
+                        <dd>Mecanismo que combina busca em documentos + geração de texto. A IA primeiro encontra trechos
+                            relevantes e depois gera a resposta citando fontes.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Temperatura</dt>
-                        <dd>Parâmetro (0 a 1) que controla a "criatividade" da IA. Baixa = precisa e repetitiva. Alta = criativa e imprevisível.</dd>
+                        <dd>Parâmetro (0 a 1) que controla a "criatividade" da IA. Baixa = precisa e repetitiva. Alta =
+                            criativa e imprevisível.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Human-in-the-loop</dt>
-                        <dd>Princípio que exige supervisão humana em todas as etapas do uso de IA. A IA sugere; o humano decide e assina.</dd>
+                        <dd>Princípio que exige supervisão humana em todas as etapas do uso de IA. A IA sugere; o humano
+                            decide e assina.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Few-Shot Prompting</dt>
-                        <dd>Técnica de prompt onde você fornece exemplos do resultado desejado antes de pedir à IA que gere o seu.</dd>
+                        <dd>Técnica de prompt onde você fornece exemplos do resultado desejado antes de pedir à IA que
+                            gere o seu.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Chain of Thought (CoT)</dt>
-                        <dd>Técnica que pede à IA para "pensar passo a passo", explicitando seu raciocínio antes de dar a resposta final.</dd>
+                        <dd>Técnica que pede à IA para "pensar passo a passo", explicitando seu raciocínio antes de dar
+                            a resposta final.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Multimodalidade</dt>
-                        <dd>Capacidade da IA de processar múltiplos tipos de dados (texto, imagem, áudio, vídeo) na mesma conversa.</dd>
+                        <dd>Capacidade da IA de processar múltiplos tipos de dados (texto, imagem, áudio, vídeo) na
+                            mesma conversa.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Knowledge Cutoff (Data de Corte)</dt>
-                        <dd>Data limite do treinamento do modelo. A IA não conhece fatos, leis ou jurisprudência publicados após essa data.</dd>
+                        <dd>Data limite do treinamento do modelo. A IA não conhece fatos, leis ou jurisprudência
+                            publicados após essa data.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Viés / Bias</dt>
-                        <dd>Preconceitos presentes nos dados de treinamento que podem ser reproduzidos pela IA em suas respostas.</dd>
+                        <dd>Preconceitos presentes nos dados de treinamento que podem ser reproduzidos pela IA em suas
+                            respostas.</dd>
                     </div>
                     <div class="glossary-item">
                         <dt>Prompt</dt>
-                        <dd>A instrução ou pergunta que você envia à IA. A qualidade do prompt determina a qualidade da resposta.</dd>
+                        <dd>A instrução ou pergunta que você envia à IA. A qualidade do prompt determina a qualidade da
+                            resposta.</dd>
                     </div>
                 </div>
             </div>
@@ -1607,22 +1623,34 @@
                 <div class="section-hero">
                     <div class="section-badge badge-m1">Módulo 1 · Seção 1.5</div>
                     <h2>Multimodalidade – Além do Texto</h2>
-                    <p>A IA não entende apenas palavras. Modelos multimodais processam <strong>texto, imagem, vídeo e áudio</strong> simultaneamente.</p>
+                    <p>A IA não entende apenas palavras. Modelos multimodais processam <strong>texto, imagem, vídeo e
+                            áudio</strong> simultaneamente.</p>
                 </div>
                 <div class="concept-card">
                     <h3><span class="card-icon">👁️</span> O que é Multimodalidade?</h3>
-                    <p>Modelos como o <strong>Gemini</strong> são <strong>nativamente multimodais</strong>: eles "veem" imagens, "ouvem" áudios e "assistem" vídeos, além de ler textos. Tudo ao mesmo tempo, na mesma conversa.</p>
+                    <p>Modelos como o <strong>Gemini</strong> são <strong>nativamente multimodais</strong>: eles "veem"
+                        imagens, "ouvem" áudios e "assistem" vídeos, além de ler textos. Tudo ao mesmo tempo, na mesma
+                        conversa.</p>
                     <h4>Aplicações no Judiciário</h4>
                     <ul>
-                        <li><strong>📸 Foto → Texto:</strong> Fotografou um documento antigo (manuscrito, certidão amarelada)? Suba a foto e peça: <em>"Transcreva o conteúdo deste documento."</em></li>
-                        <li><strong>🎥 Vídeo → Resumo:</strong> Envie o vídeo de uma diligência ou audiência e peça: <em>"Resuma os pontos principais deste vídeo."</em></li>
-                        <li><strong>🎵 Áudio → Análise:</strong> Grave um despacho verbal e envie ao Gemini: <em>"Transcreva e identifique as determinações."</em></li>
-                        <li><strong>📊 Tabela/Gráfico → Dados:</strong> Suba uma imagem de planilha ou gráfico: <em>"Extraia os dados desta tabela em formato de lista."</em></li>
+                        <li><strong>📸 Foto → Texto:</strong> Fotografou um documento antigo (manuscrito, certidão
+                            amarelada)? Suba a foto e peça: <em>"Transcreva o conteúdo deste documento."</em></li>
+                        <li><strong>🎥 Vídeo → Resumo:</strong> Envie o vídeo de uma diligência ou audiência e peça:
+                            <em>"Resuma os pontos principais deste vídeo."</em>
+                        </li>
+                        <li><strong>🎵 Áudio → Análise:</strong> Grave um despacho verbal e envie ao Gemini:
+                            <em>"Transcreva e identifique as determinações."</em>
+                        </li>
+                        <li><strong>📊 Tabela/Gráfico → Dados:</strong> Suba uma imagem de planilha ou gráfico:
+                            <em>"Extraia os dados desta tabela em formato de lista."</em>
+                        </li>
                     </ul>
                 </div>
                 <div class="highlight-box info">
                     <div class="hl-title">💡 Dica Prática</div>
-                    <p>No <strong>Assistente TJMG</strong>, você pode enviar arquivos de diversos formatos. Use essa capacidade para <strong>analisar provas documentais fotografadas</strong>, gráficos de laudos periciais ou mapas anexados a processos ambientais.</p>
+                    <p>No <strong>Assistente TJMG</strong>, você pode enviar arquivos de diversos formatos. Use essa
+                        capacidade para <strong>analisar provas documentais fotografadas</strong>, gráficos de laudos
+                        periciais ou mapas anexados a processos ambientais.</p>
                 </div>
             </div>
 
@@ -1642,15 +1670,23 @@
                 <div class="concept-card">
                     <h3><span class="card-icon">🚨</span> Exemplos Reais de Alucinação</h3>
                     <ul>
-                        <li><strong>Jurisprudência Inventada:</strong> A IA pode citar "STJ, REsp 1.234.567/MG, Rel. Min. Fulano" — o número, o relator e a ementa parecem reais, mas <strong>o acórdão nunca existiu</strong>.</li>
-                        <li><strong>Lei Revogada:</strong> A IA pode fundamentar uma minuta com artigo de lei já revogado, porque o texto ainda existia nos dados de treinamento.</li>
-                        <li><strong>Dados Cruzados:</strong> A IA mistura fatos de processos diferentes, atribuindo depoimento de uma testemunha ao nome de outra.</li>
+                        <li><strong>Jurisprudência Inventada:</strong> A IA pode citar "STJ, REsp 1.234.567/MG, Rel.
+                            Min. Fulano" — o número, o relator e a ementa parecem reais, mas <strong>o acórdão nunca
+                                existiu</strong>.</li>
+                        <li><strong>Lei Revogada:</strong> A IA pode fundamentar uma minuta com artigo de lei já
+                            revogado, porque o texto ainda existia nos dados de treinamento.</li>
+                        <li><strong>Dados Cruzados:</strong> A IA mistura fatos de processos diferentes, atribuindo
+                            depoimento de uma testemunha ao nome de outra.</li>
                     </ul>
                 </div>
                 <div class="highlight-box danger">
                     <div class="hl-title">📰 Caso Emblemático: "Mata Nativa vs. Avianca"</div>
-                    <p>Em 2023, um advogado americano usou o ChatGPT para pesquisar jurisprudência e <strong>citou em sua petição seis decisões judiciais que nunca existiram</strong>. A IA inventou nomes de casos, números de processos e ementas completas, todos com aparência perfeita. O advogado foi multado, e o caso virou símbolo mundial do risco de confiar cegamente em IA.</p>
-                    <p style="margin-top:8px"><strong>Lição:</strong> Sempre verifique a fonte — se a IA cita uma decisão, abra o link e confirme que ela existe.</p>
+                    <p>Em 2023, um advogado americano usou o ChatGPT para pesquisar jurisprudência e <strong>citou em
+                            sua petição seis decisões judiciais que nunca existiram</strong>. A IA inventou nomes de
+                        casos, números de processos e ementas completas, todos com aparência perfeita. O advogado foi
+                        multado, e o caso virou símbolo mundial do risco de confiar cegamente em IA.</p>
+                    <p style="margin-top:8px"><strong>Lição:</strong> Sempre verifique a fonte — se a IA cita uma
+                        decisão, abra o link e confirme que ela existe.</p>
                 </div>
                 <div class="concept-card">
                     <h3><span class="card-icon">💉</span> A Vacina: Grounding (Ancoragem)</h3>
@@ -1658,15 +1694,22 @@
                         do processo). Ferramentas como o <strong>NotebookLM</strong> e o <strong>Assistente
                             TJMG</strong> usam isso para reduzir drasticamente a alucinação.</p>
                     <h4>Como funciona o RAG (Retrieval-Augmented Generation)</h4>
-                    <p>O <strong>RAG</strong> é o mecanismo por trás do Grounding. Em vez de gerar respostas "da cabeça", a IA primeiro <strong>busca trechos relevantes nos documentos fornecidos</strong> e depois <strong>gera a resposta citando essas fontes</strong>. É a diferença entre um aluno que "chuta" a prova e um que consulta o livro.</p>
+                    <p>O <strong>RAG</strong> é o mecanismo por trás do Grounding. Em vez de gerar respostas "da
+                        cabeça", a IA primeiro <strong>busca trechos relevantes nos documentos fornecidos</strong> e
+                        depois <strong>gera a resposta citando essas fontes</strong>. É a diferença entre um aluno que
+                        "chuta" a prova e um que consulta o livro.</p>
                 </div>
                 <div class="quiz">
                     <h4>🧪 Teste seu Conhecimento</h4>
-                    <div class="quiz-option" onclick="checkQuiz(this,false)">Se a IA cita um REsp com número e relator, a jurisprudência é confiável</div>
-                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Mesmo com citação detalhada, devo sempre verificar a fonte antes de usar</div>
-                    <div class="quiz-option" onclick="checkQuiz(this,false)">Alucinação só acontece em IAs gratuitas, não no ambiente corporativo</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Se a IA cita um REsp com número e relator,
+                        a jurisprudência é confiável</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Mesmo com citação
+                        detalhada, devo sempre verificar a fonte antes de usar</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Alucinação só acontece em IAs gratuitas,
+                        não no ambiente corporativo</div>
                     <div class="quiz-feedback"
-                        data-right="A IA pode inventar citações perfeitas. Sempre confirme no sistema oficial (PJe, STJ, etc.)."></div>
+                        data-right="A IA pode inventar citações perfeitas. Sempre confirme no sistema oficial (PJe, STJ, etc.).">
+                    </div>
                 </div>
             </div>
 
@@ -1701,25 +1744,32 @@
                     <div class="compare-grid">
                         <div class="compare-col good">
                             <h4>🧊 Temperatura 0.1 (Precisa)</h4>
-                            <p>"Julgo procedente o pedido para condenar o réu ao pagamento de R$ 15.000,00 a título de danos morais."</p>
+                            <p>"Julgo procedente o pedido para condenar o réu ao pagamento de R$ 15.000,00 a título de
+                                danos morais."</p>
                         </div>
                         <div class="compare-col bad">
                             <h4>🔥 Temperatura 0.9 (Criativa)</h4>
-                            <p>"A sentença concedeu uma reparação significativa à parte autora, reconhecendo o profundo impacto emocional sofrido, em valor que busca equilibrar justiça e razoabilidade."</p>
+                            <p>"A sentença concedeu uma reparação significativa à parte autora, reconhecendo o profundo
+                                impacto emocional sofrido, em valor que busca equilibrar justiça e razoabilidade."</p>
                         </div>
                     </div>
                     <div class="highlight-box warn">
                         <div class="hl-title">💡 Dica</div>
-                        <p>No <strong>Assistente TJMG</strong>, a temperatura já vem pré-configurada para valores baixos, priorizando precisão e fidelidade ao conteúdo processual.</p>
+                        <p>No <strong>Assistente TJMG</strong>, a temperatura já vem pré-configurada para valores
+                            baixos, priorizando precisão e fidelidade ao conteúdo processual.</p>
                     </div>
                 </div>
                 <div class="quiz">
                     <h4>🧪 Teste seu Conhecimento</h4>
-                    <div class="quiz-option" onclick="checkQuiz(this,false)">Temperatura alta é ideal para minutas e sentenças</div>
-                    <div class="quiz-option" onclick="checkQuiz(this,false)">A temperatura não afeta a qualidade da resposta</div>
-                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Para tarefas jurídicas, temperatura baixa garante respostas mais fiéis aos dados</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">Temperatura alta é ideal para minutas e
+                        sentenças</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,false)">A temperatura não afeta a qualidade da
+                        resposta</div>
+                    <div class="quiz-option" onclick="checkQuiz(this,true)" data-correct="true">Para tarefas jurídicas,
+                        temperatura baixa garante respostas mais fiéis aos dados</div>
                     <div class="quiz-feedback"
-                        data-right="Temperatura baixa = respostas mais precisas e previsíveis, ideais para o Judiciário."></div>
+                        data-right="Temperatura baixa = respostas mais precisas e previsíveis, ideais para o Judiciário.">
+                    </div>
                 </div>
             </div>
 
@@ -1745,18 +1795,28 @@
                 </div>
                 <div class="concept-card">
                     <h3><span class="card-icon">⚖️</span> Viés Algorítmico (Bias)</h3>
-                    <p>A IA aprende com textos produzidos por humanos — e humanos têm preconceitos. Isso significa que a IA pode <strong>reproduzir vieses de gênero, raça, classe social ou região</strong> presentes nos dados de treinamento.</p>
+                    <p>A IA aprende com textos produzidos por humanos — e humanos têm preconceitos. Isso significa que a
+                        IA pode <strong>reproduzir vieses de gênero, raça, classe social ou região</strong> presentes
+                        nos dados de treinamento.</p>
                     <div class="highlight-box danger">
                         <div class="hl-title">🚨 Risco no Judiciário</div>
-                        <p>Uma IA pode, por exemplo, usar involuntariamente <strong>linguagem mais dura ao descrever réus de determinados perfis</strong>, ou sugerir fundamentação que reflete vieses sociais. O assessor deve revisar a minuta com olhar crítico para <strong>imparcialidade</strong>.</p>
+                        <p>Uma IA pode, por exemplo, usar involuntariamente <strong>linguagem mais dura ao descrever
+                                réus de determinados perfis</strong>, ou sugerir fundamentação que reflete vieses
+                            sociais. O assessor deve revisar a minuta com olhar crítico para
+                            <strong>imparcialidade</strong>.
+                        </p>
                     </div>
                 </div>
                 <div class="concept-card">
                     <h3><span class="card-icon">📅</span> Data de Corte (Knowledge Cutoff)</h3>
-                    <p>Todo modelo de IA tem uma <strong>data limite de treinamento</strong>. Ele não sabe de fatos, leis ou decisões publicadas após essa data.</p>
+                    <p>Todo modelo de IA tem uma <strong>data limite de treinamento</strong>. Ele não sabe de fatos,
+                        leis ou decisões publicadas após essa data.</p>
                     <div class="highlight-box info">
                         <div class="hl-title">📌 Consequência Prática</div>
-                        <p>Se uma lei foi alterada na semana passada, a IA pode citar a <strong>versão revogada</strong> com total confiança. Por isso, para legislação recente, <strong>sempre use Grounding</strong> (suba o PDF atualizado) em vez de confiar no "conhecimento geral" da IA.</p>
+                        <p>Se uma lei foi alterada na semana passada, a IA pode citar a <strong>versão revogada</strong>
+                            com total confiança. Por isso, para legislação recente, <strong>sempre use
+                                Grounding</strong> (suba o PDF atualizado) em vez de confiar no "conhecimento geral" da
+                            IA.</p>
                     </div>
                 </div>
             </div>
@@ -2005,13 +2065,21 @@
                                 <em>"Antes de dar a conclusão, pense passo a passo e explique seu raciocínio
                                     lógico."</em> Isso obriga a IA a raciocinar antes, reduzindo erros.
                             </p>
-                            <p><strong>3. Delimitadores (Separadores):</strong> Use <code>---</code> ou <code>"""</code> para separar o contexto do comando. Exemplo:<br>
-                                <em>"Analise o texto abaixo:<br>---<br>[Texto do processo]<br>---<br>Identifique os pedidos e fundamentos."</em><br>
+                            <p><strong>3. Delimitadores (Separadores):</strong> Use <code>---</code> ou <code>"""</code>
+                                para separar o contexto do comando. Exemplo:<br>
+                                <em>"Analise o texto abaixo:<br>---<br>[Texto do processo]<br>---<br>Identifique os
+                                    pedidos e fundamentos."</em><br>
                                 Isso evita que a IA confunda o texto a ser analisado com a instrução.
                             </p>
-                            <p><strong>4. Prompt Negativo (Restrição Explícita):</strong> Adicione o que a IA <em>não</em> deve fazer:<br>
-                                <em>"NÃO cite legislação que não esteja nos documentos fornecidos. NÃO invente jurisprudência."</em></p>
-                            <p><strong>5. Iteração (Refine!):</strong> O prompt ideal <strong>raramente sai na primeira tentativa</strong>. Peça a resposta, avalie, e refine: <em>"Agora reescreva, mas em formato de tópicos e com linguagem mais formal."</em> Cada rodada melhora o resultado.</p>
+                            <p><strong>4. Prompt Negativo (Restrição Explícita):</strong> Adicione o que a IA
+                                <em>não</em> deve fazer:<br>
+                                <em>"NÃO cite legislação que não esteja nos documentos fornecidos. NÃO invente
+                                    jurisprudência."</em>
+                            </p>
+                            <p><strong>5. Iteração (Refine!):</strong> O prompt ideal <strong>raramente sai na primeira
+                                    tentativa</strong>. Peça a resposta, avalie, e refine: <em>"Agora reescreva, mas em
+                                    formato de tópicos e com linguagem mais formal."</em> Cada rodada melhora o
+                                resultado.</p>
                         </div>
                     </div>
                 </div>
@@ -2162,10 +2230,98 @@
                 </div>
             </div>
 
+            <!-- M3: TRANSCRITOR TJMG (APP) -->
+            <div class="section" id="m3-transcritor-app">
+                <div class="section-hero">
+                    <div class="section-badge badge-m3">Módulo 3 · Seção 3.2</div>
+                    <h2><a href="https://transcritorhml.tjmg.jus.br/" target="_blank"
+                            style="color:inherit;text-decoration:underline">Transcritor TJMG</a>: A Plataforma de
+                        Degravação</h2>
+                    <p>O sistema oficial do tribunal para transcrição de audiências. Envie o áudio, receba o texto —
+                        tudo dentro do ambiente seguro do TJMG.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><span class="card-icon">🖥️</span> O que é o Transcritor TJMG?</h3>
+                    <p>É uma <strong>plataforma web</strong> desenvolvida internamente que converte gravações de
+                        audiências em texto escrito, usando tecnologia de reconhecimento de fala
+                        (<strong>Speech-to-Text</strong>).</p>
+                    <div class="highlight-box success">
+                        <div class="hl-title">🔗 Acesse aqui</div>
+                        <p><a href="https://transcritorhml.tjmg.jus.br/" target="_blank"
+                                style="color:var(--green);font-weight:700;text-decoration:underline">transcritorhml.tjmg.jus.br</a>
+                            — Acesso restrito à rede do TJMG.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="acc-item">
+                        <div class="acc-header">📤 Como funciona? <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ol>
+                                <li><strong>Upload:</strong> Envie o arquivo de áudio ou vídeo da audiência (MP3, MP4,
+                                    WAV, etc.)</li>
+                                <li><strong>Processamento:</strong> O sistema transcreve automaticamente usando IA de
+                                    reconhecimento de fala</li>
+                                <li><strong>Resultado:</strong> Você recebe o texto com marcações de tempo
+                                    (<em>timestamps</em>), permitindo localizar trechos específicos</li>
+                                <li><strong>Edição:</strong> Revise e corrija o texto diretamente na plataforma</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">🎯 Funcionalidades principais <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ul>
+                                <li><strong>Transcrição automática:</strong> Converte áudio em texto sem necessidade de
+                                    digitação manual</li>
+                                <li><strong>Timestamps:</strong> Cada trecho do texto vem vinculado ao momento exato do
+                                    áudio — ideal para conferência</li>
+                                <li><strong>Identificação de falantes:</strong> O sistema tenta distinguir quem está
+                                    falando (juiz, advogado, testemunha)</li>
+                                <li><strong>Editor integrado:</strong> Corrija erros de transcrição diretamente na
+                                    plataforma</li>
+                                <li><strong>Exportação:</strong> Baixe o texto final em formatos padrão para anexar ao
+                                    processo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">💡 Dicas de uso <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ul>
+                                <li><strong>Qualidade do áudio importa:</strong> Gravações com muito ruído de fundo ou
+                                    falas sobrepostas reduzem a precisão da transcrição</li>
+                                <li><strong>Sempre revise:</strong> A transcrição é um <em>rascunho inteligente</em> —
+                                    nomes próprios, termos técnicos e números podem ser transcritos incorretamente</li>
+                                <li><strong>Combine com o Assistente TJMG:</strong> Após obter a transcrição, use o
+                                    Assistente para analisar o conteúdo (veja a próxima seção)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-header">🔒 Segurança <span class="arrow">▼</span></div>
+                        <div class="acc-body">
+                            <ul>
+                                <li><strong>Ambiente corporativo:</strong> Os áudios e transcrições ficam dentro da
+                                    infraestrutura do TJMG</li>
+                                <li><strong>Sem exposição externa:</strong> Diferente de serviços públicos de
+                                    transcrição, seus dados <strong>não saem do tribunal</strong></li>
+                                <li><strong>Compatível com processos sigilosos:</strong> Por ser ambiente interno, pode
+                                    ser usado com audiências de processos em segredo de justiça</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box info">
+                    <div class="hl-title">🔄 Fluxo Completo: Transcritor + Assistente</div>
+                    <p style="text-align:center;font-size:1rem;margin-top:8px;color:var(--accent2)"><strong>Áudio da
+                            audiência → Transcritor TJMG (texto) → Assistente TJMG (análise com IA)</strong></p>
+                </div>
+            </div>
+
             <!-- M3: TRANSCRITOR -->
             <div class="section" id="m3-transcritor">
                 <div class="section-hero">
-                    <div class="section-badge badge-m3">Módulo 3 · Seção 3.2</div>
+                    <div class="section-badge badge-m3">Módulo 3 · Seção 3.3</div>
                     <h2>Transcritor de Audiências</h2>
                     <p>A solução para a "Síndrome do Fone de Ouvido": parar de ouvir 2h para achar 1 minuto.</p>
                 </div>
@@ -2241,13 +2397,20 @@
                     <h3><span class="card-icon">✅</span> Checklist de Revisão Pós-IA</h3>
                     <p>Antes de assinar qualquer texto produzido com IA, percorra esta lista:</p>
                     <ol>
-                        <li><strong>Legislação citada:</strong> Verifique se as leis, artigos e incisos existem e estão vigentes</li>
-                        <li><strong>Jurisprudência:</strong> Confira se os acórdãos, REsp e súmulas citados são reais (busque no site do tribunal)</li>
-                        <li><strong>Nomes e números:</strong> Confira nomes das partes, número do processo, datas e valores</li>
-                        <li><strong>Coerência lógica:</strong> A fundamentação é coerente com o dispositivo? Não há contradições?</li>
-                        <li><strong>Tom e linguagem:</strong> O texto está adequado ao receptor (advogado, parte leiga, outro juiz)?</li>
-                        <li><strong>Viés:</strong> O texto trata as partes de forma imparcial? Há alguma linguagem enviesada?</li>
-                        <li><strong>Completude:</strong> Todos os pedidos foram analisados? Faltou enfrentar algum argumento?</li>
+                        <li><strong>Legislação citada:</strong> Verifique se as leis, artigos e incisos existem e estão
+                            vigentes</li>
+                        <li><strong>Jurisprudência:</strong> Confira se os acórdãos, REsp e súmulas citados são reais
+                            (busque no site do tribunal)</li>
+                        <li><strong>Nomes e números:</strong> Confira nomes das partes, número do processo, datas e
+                            valores</li>
+                        <li><strong>Coerência lógica:</strong> A fundamentação é coerente com o dispositivo? Não há
+                            contradições?</li>
+                        <li><strong>Tom e linguagem:</strong> O texto está adequado ao receptor (advogado, parte leiga,
+                            outro juiz)?</li>
+                        <li><strong>Viés:</strong> O texto trata as partes de forma imparcial? Há alguma linguagem
+                            enviesada?</li>
+                        <li><strong>Completude:</strong> Todos os pedidos foram analisados? Faltou enfrentar algum
+                            argumento?</li>
                     </ol>
                 </div>
                 <div class="concept-card">
@@ -2257,25 +2420,33 @@
                         <div class="acc-item">
                             <div class="acc-header">📑 Despacho Saneador <span class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Prompt:</strong> <em>"Atue como assessor cível. Analise a inicial e a contestação deste processo. Identifique os pontos controvertidos e fixe os temas de prova. Formate como despacho saneador."</em></p>
+                                <p><strong>Prompt:</strong> <em>"Atue como assessor cível. Analise a inicial e a
+                                        contestação deste processo. Identifique os pontos controvertidos e fixe os temas
+                                        de prova. Formate como despacho saneador."</em></p>
                             </div>
                         </div>
                         <div class="acc-item">
                             <div class="acc-header">⚖️ Comparar Teses em Embargos <span class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Prompt:</strong> <em>"Compare a tese da sentença com os argumentos dos embargos de declaração. Identifique se há omissão, contradição ou obscuridade real, ou se é mero pedido de reexame."</em></p>
+                                <p><strong>Prompt:</strong> <em>"Compare a tese da sentença com os argumentos dos
+                                        embargos de declaração. Identifique se há omissão, contradição ou obscuridade
+                                        real, ou se é mero pedido de reexame."</em></p>
                             </div>
                         </div>
                         <div class="acc-item">
                             <div class="acc-header">📊 Triagem de Acervo <span class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Prompt:</strong> <em>"Analise os 5 processos selecionados. Para cada um, classifique o tipo de ação, identifique o pedido principal e sugira o modelo de despacho padrão mais adequado."</em></p>
+                                <p><strong>Prompt:</strong> <em>"Analise os 5 processos selecionados. Para cada um,
+                                        classifique o tipo de ação, identifique o pedido principal e sugira o modelo de
+                                        despacho padrão mais adequado."</em></p>
                             </div>
                         </div>
                         <div class="acc-item">
                             <div class="acc-header">✉️ Comunicação Administrativa <span class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Prompt:</strong> <em>"Redija um ofício ao Delegado de Polícia solicitando informações sobre o cumprimento do mandado de prisão expedido nestes autos. Tom formal e urgente."</em></p>
+                                <p><strong>Prompt:</strong> <em>"Redija um ofício ao Delegado de Polícia solicitando
+                                        informações sobre o cumprimento do mandado de prisão expedido nestes autos. Tom
+                                        formal e urgente."</em></p>
                             </div>
                         </div>
                     </div>
@@ -2286,25 +2457,40 @@
                         <div class="acc-item">
                             <div class="acc-header">A IA pode substituir o perito? <span class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Não.</strong> A IA pode <em>resumir</em> o laudo pericial, destacar pontos-chave e cruzar com outras peças, mas <strong>não substitui a perícia técnica</strong>. O perito tem responsabilidade técnica e legal; a IA é apenas uma ferramenta de análise textual.</p>
+                                <p><strong>Não.</strong> A IA pode <em>resumir</em> o laudo pericial, destacar
+                                    pontos-chave e cruzar com outras peças, mas <strong>não substitui a perícia
+                                        técnica</strong>. O perito tem responsabilidade técnica e legal; a IA é apenas
+                                    uma ferramenta de análise textual.</p>
                             </div>
                         </div>
                         <div class="acc-item">
-                            <div class="acc-header">Posso usar IA para análise de prova oral? <span class="arrow">▼</span></div>
+                            <div class="acc-header">Posso usar IA para análise de prova oral? <span
+                                    class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Sim, com cautela.</strong> Transcreva a audiência, envie ao Assistente TJMG e peça para <em>"identificar contradições entre os depoimentos"</em>. Mas a <strong>valoração da prova é exclusivamente humana</strong> — a IA pode apontar inconsistências factuais, mas não julgar credibilidade.</p>
+                                <p><strong>Sim, com cautela.</strong> Transcreva a audiência, envie ao Assistente TJMG e
+                                    peça para <em>"identificar contradições entre os depoimentos"</em>. Mas a
+                                    <strong>valoração da prova é exclusivamente humana</strong> — a IA pode apontar
+                                    inconsistências factuais, mas não julgar credibilidade.
+                                </p>
                             </div>
                         </div>
                         <div class="acc-item">
                             <div class="acc-header">Se a IA errar, quem responde? <span class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Quem assina.</strong> A Resolução 615/2024 do CNJ é clara: o ser humano é <strong>sempre o responsável final</strong>. A IA é ferramenta; o ato decisório é do juiz ou servidor que assina.</p>
+                                <p><strong>Quem assina.</strong> A Resolução 615/2024 do CNJ é clara: o ser humano é
+                                    <strong>sempre o responsável final</strong>. A IA é ferramenta; o ato decisório é do
+                                    juiz ou servidor que assina.
+                                </p>
                             </div>
                         </div>
                         <div class="acc-item">
-                            <div class="acc-header">Posso usar ChatGPT gratuito para processos? <span class="arrow">▼</span></div>
+                            <div class="acc-header">Posso usar ChatGPT gratuito para processos? <span
+                                    class="arrow">▼</span></div>
                             <div class="acc-body">
-                                <p><strong>Nunca com dados reais.</strong> O ChatGPT gratuito (e qualquer IA pública) pode usar seus dados para treinamento. Use <strong>apenas o Assistente TJMG</strong> para processos reais. O ChatGPT pode ser usado para dúvidas genéricas, correção gramatical ou estudo de doutrina pública.</p>
+                                <p><strong>Nunca com dados reais.</strong> O ChatGPT gratuito (e qualquer IA pública)
+                                    pode usar seus dados para treinamento. Use <strong>apenas o Assistente TJMG</strong>
+                                    para processos reais. O ChatGPT pode ser usado para dúvidas genéricas, correção
+                                    gramatical ou estudo de doutrina pública.</p>
                             </div>
                         </div>
                     </div>
